@@ -1,30 +1,39 @@
-import { IonPage, IonHeader, IonContent, IonCheckbox } from '@ionic/react'
-import { useRef, useState } from 'react'
-import moment from 'moment'
-import FAB from './FAB'
-import './Home.scss'
-import { Link } from 'react-router-dom'
-import { PatchHabitModal } from './PatchHabitModal'
+import { IonPage, IonHeader, IonContent, IonCheckbox } from "@ionic/react";
+import { useRef, useState, useEffect } from "react";
+import moment from "moment";
+import FAB from "./FAB";
+import "./Home.scss";
+import { Link } from "react-router-dom";
+import { PatchHabitModal } from "./PatchHabitModal";
+import { useHistory } from "react-router";
 
 function Home() {
-  const scrollRef = useRef<Array<HTMLDivElement | null>>([])
-  const groupRef = useRef<HTMLDivElement | null>(null)
+  const scrollRef = useRef<Array<HTMLDivElement | null>>([]);
+  const groupRef = useRef<HTMLDivElement | null>(null);
 
-  const [user, setUser] = useState({ _id: '', name: '', email: '', avatar: '' })
-  const [habits, setHabit] = useState([])
+  const history = useHistory();
+
+  const [user, setUser] = useState({ name: "", email: "", avatar: "" });
+  const [habits, setHabit] = useState([]);
 
   const getDatesInRange = (min: any, max: any) => {
     return Array((max - min) / 86400000)
       .fill(0)
-      .map((_, i) => new Date(new Date().setDate(min.getDate() + i)))
-  }
+      .map((_, i) => new Date(new Date().setDate(min.getDate() + i)));
+  };
 
-  const patchhabitModalRef = useRef<HTMLIonModalElement>(null)
+  const patchhabitModalRef = useRef<HTMLIonModalElement>(null);
 
-  function dismiss(type: 'habit' | 'group') {
-    if (type === 'habit') patchhabitModalRef.current?.dismiss()
+  function dismiss(type: "habit" | "group") {
+    if (type === "habit") patchhabitModalRef.current?.dismiss();
   }
-  const [patch, setPatch] = useState(false)
+  const [patch, setPatch] = useState(false);
+
+  useEffect(() => {
+    if (!user) {
+      history.replace("/login");
+    }
+  });
 
   return (
     <IonPage>
@@ -40,20 +49,23 @@ function Home() {
             <div className="heading">
               <h6 className="bold">Today</h6>
               <p>
-                {new Date().toLocaleDateString('en-us', {
-                  weekday: 'short',
-                  month: 'short',
-                  day: 'numeric'
+                {new Date().toLocaleDateString("en-us", {
+                  weekday: "short",
+                  month: "short",
+                  day: "numeric",
                 })}
               </p>
               <div className="scroll-container" ref={groupRef}>
-                {getDatesInRange(new Date(2023, 1, 1), new Date(2023, 2, 2)).map((data: Date, index) => {
+                {getDatesInRange(
+                  new Date(2023, 1, 1),
+                  new Date(2023, 2, 2)
+                ).map((data: Date, index) => {
                   return (
                     <>
                       {moment(data).week() === moment().week() ? (
                         <div
                           ref={(element) => {
-                            scrollRef.current[index] = element
+                            scrollRef.current[index] = element;
                           }}
                           key={index}
                         >
@@ -65,7 +77,7 @@ function Home() {
                         </div>
                       )}
                     </>
-                  )
+                  );
                 })}
               </div>
             </div>
@@ -80,7 +92,7 @@ function Home() {
                           <div
                             className="color-bar"
                             style={{
-                              background: data.color
+                              background: data.color,
                             }}
                           ></div>
                           <div className="habit">
@@ -96,7 +108,7 @@ function Home() {
                           ></IonCheckbox>
                         </div>
                       </div>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -111,7 +123,7 @@ function Home() {
                             <div
                               className="color-bar"
                               style={{
-                                background: data.color
+                                background: data.color,
                               }}
                             ></div>
                             <div className="habit">
@@ -122,14 +134,17 @@ function Home() {
                           <div
                             className="tick"
                             style={{
-                              background: 'var(--neutral-300)'
+                              background: "var(--neutral-300)",
                             }}
                           >
-                            <IonCheckbox slot="start" onClick={() => setPatch(true)}></IonCheckbox>
+                            <IonCheckbox
+                              slot="start"
+                              onClick={() => setPatch(true)}
+                            ></IonCheckbox>
                           </div>
                         </div>
                       </>
-                    )
+                    );
                   })}
                 </div>
               </div>
@@ -146,24 +161,24 @@ function Home() {
       </IonContent>
       <FAB />
     </IonPage>
-  )
+  );
 }
-export default Home
+export default Home;
 
 function DateItem({ data }: { data: Date }) {
   return (
     <div className="scroll-item">
-      <p>{data.toLocaleDateString('en-us', { weekday: 'short' })}</p>
+      <p>{data.toLocaleDateString("en-us", { weekday: "short" })}</p>
       {data.toLocaleDateString() === new Date().toLocaleDateString() ? (
         <div className="current-date">
           <p
             className="bold"
             style={{
-              color: 'var(--neutral-300)'
+              color: "var(--neutral-300)",
             }}
           >
-            {data.toLocaleDateString('en-us', {
-              day: 'numeric'
+            {data.toLocaleDateString("en-us", {
+              day: "numeric",
             })}
           </p>
         </div>
@@ -171,14 +186,14 @@ function DateItem({ data }: { data: Date }) {
         <p
           className="bold"
           style={{
-            color: 'var(--neutral-300)'
+            color: "var(--neutral-300)",
           }}
         >
-          {data.toLocaleDateString('en-us', {
-            day: 'numeric'
+          {data.toLocaleDateString("en-us", {
+            day: "numeric",
           })}
         </p>
       )}
     </div>
-  )
+  );
 }

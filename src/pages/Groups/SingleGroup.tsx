@@ -1,37 +1,62 @@
-import { IonPage, IonContent, IonBackButton, IonIcon, IonButton } from '@ionic/react'
-import { leafOutline, person, pulse, readerOutline, sunny, walk } from 'ionicons/icons'
-import { useEffect, useState } from 'react'
-import { Link, RouteComponentProps } from 'react-router-dom'
-import './SingleGroup.scss'
+import {
+  IonPage,
+  IonContent,
+  IonBackButton,
+  IonIcon,
+  IonButton,
+} from "@ionic/react";
+import {
+  leafOutline,
+  person,
+  pulse,
+  readerOutline,
+  sunny,
+  walk,
+} from "ionicons/icons";
+import { useEffect, useState } from "react";
+import { Link, RouteComponentProps } from "react-router-dom";
+import "./SingleGroup.scss";
 
 interface SingleGroupPageProps
   extends RouteComponentProps<{
-    id: string
+    id: string;
   }> {}
 
 const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
-  const [groupData, setGroupData] = useState({ name: '', color: '' })
+  const [groupData, setGroupData] = useState({ name: "", color: "" });
 
- 
   return (
     <IonPage>
       <IonContent>
-        <div className='opengroups_headercardmain'>
-          <div className="opengroups_headercard" style={{ background: groupData.color }}>
-            <div className="opengroups_headercardback" style={{ background: groupData.color }}>
+        <div className="opengroups_headercardmain">
+          <div
+            className="opengroups_headercard"
+            style={{ background: groupData.color }}
+          >
+            <div
+              className="opengroups_headercardback"
+              style={{ background: groupData.color }}
+            >
               <IonBackButton defaultHref="/groups"></IonBackButton>
             </div>
-          <div className="opengroups_headercardback1"></div>
-          <div>
-            <img alt="sort" src="/assets/icon/15.svg" />
-          </div>
-          <div>
-            <img alt="plus" src="/assets/icon/18.svg" />
-          </div>
+            <div className="opengroups_headercardback1"></div>
+            <div>
+              <img alt="sort" src="/assets/icon/15.svg" />
+            </div>
+            <div>
+              <img alt="plus" src="/assets/icon/18.svg" />
+            </div>
           </div>
         </div>
-        <div className="opengroups_profile" style={{ background: groupData.color }}>
-          <img className="opengroups_profile1" alt="profile" src="/assets/youth.svg" />
+        <div
+          className="opengroups_profile"
+          style={{ background: groupData.color }}
+        >
+          <img
+            className="opengroups_profile1"
+            alt="profile"
+            src="/assets/youth.svg"
+          />
         </div>
         <div className="opengroups_main">
           <div className="opengroups_card">
@@ -65,20 +90,27 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
                 Group Progress
               </Link>
             </IonButton>
-            {[['Read', 'readerOutline'], ['Run', 'walk'], ['Meditate'], ['Gym']].map((d, i) => {
+            {[
+              ["Read", "readerOutline"],
+              ["Run", "walk"],
+              ["Meditate"],
+              ["Gym"],
+            ].map((d, i) => {
               return (
                 <IonButton className="opengroups_habits_l" fill="clear" key={i}>
                   <IonIcon icon={readerOutline}></IonIcon>
                   {d[0]}
                 </IonButton>
-              )
+              );
             })}
           </div>
         </div>
         <div className="opengroups_habits_title">
           <div className="opengroups_habits_title_wrapper">
             <div className="opengroups_habits_title_l">
-              <span className="opengroups_habits_title_l_text">Leaderboard</span>
+              <span className="opengroups_habits_title_l_text">
+                Leaderboard
+              </span>
             </div>
             <div className="opengroups_habits_title_r">
               <ul className="opengroups_habits_title_r_l">
@@ -95,14 +127,18 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
             </div>
           </div>
         </div>
-        {['JJ', 'Adam', 'Spandita', 'Tarushi'].map((data, index) => {
+        {["JJ", "Adam", "Spandita", "Tarushi"].map((data, index) => {
           return (
             <div className="opengroups_habit" key={index}>
               <div className="opengroups_habit_wrapper">
                 <div className="opengroups_habit_l">
                   <div
                     className="opengroups_habit_l_profile"
-                    style={{ background: groupData.color, width: '2rem', height: '2rem' }}
+                    style={{
+                      background: groupData.color,
+                      width: "2rem",
+                      height: "2rem",
+                    }}
                   ></div>
                   <span className="opengroups_habit_l_text">{data}</span>
                 </div>
@@ -115,10 +151,10 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
                 </div>
               </div>
             </div>
-          )
+          );
         })}
       </IonContent>
     </IonPage>
-  )
-}
-export default SingleGroup
+  );
+};
+export default SingleGroup;

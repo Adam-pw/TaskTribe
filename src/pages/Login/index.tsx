@@ -10,11 +10,26 @@ import {
 import { useState } from "react";
 import { useHistory } from "react-router";
 import "./Login.scss";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "../../utils/firebase";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string | undefined>("");
   const [password, setPassword] = useState<string | undefined>("");
   const history = useHistory();
+
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
+
+  const loginUser = () => {
+    if (email && password) {
+      signInWithEmailAndPassword(email, password);
+    }
+
+    if (user) {
+      history.replace("/");
+    }
+  };
 
   return (
     <IonPage>
@@ -50,7 +65,7 @@ const Login: React.FC = () => {
           </IonItem>
         </div>
 
-        <IonButton expand="block" className="login_btn">
+        <IonButton expand="block" className="login_btn" onClick={loginUser}>
           <span className="bold">Login</span>
         </IonButton>
 

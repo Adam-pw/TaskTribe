@@ -1,11 +1,16 @@
-import { IonPage, IonHeader, IonLabel, IonContent } from '@ionic/react'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import './Groups.scss'
+import { IonPage, IonHeader, IonLabel, IonContent } from "@ionic/react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./Groups.scss";
 
 const Groups: React.FC = () => {
-  const [user, setUser] = useState({ _id: '', name: '', email: '', avatar: '' })
-  const [groups, setGroups] = useState([])
+  const [user, setUser] = useState({
+    _id: "",
+    name: "",
+    email: "",
+    avatar: "",
+  });
+  const [groups, setGroups] = useState([]);
 
   return (
     <IonPage>
@@ -18,7 +23,9 @@ const Groups: React.FC = () => {
             <img alt="filter" src="/assets/icon/17.svg" />
           </div>
         </div>
-        <div className="Groups_headermainsub">You have {groups.length} Groups</div>
+        <div className="Groups_headermainsub">
+          You have {groups.length} Groups
+        </div>
         <div className="Groups_headermainline"></div>
       </IonHeader>
       <IonContent className="groups_content">
@@ -26,7 +33,10 @@ const Groups: React.FC = () => {
           return (
             <Link to={`/groups/g/${data._id}`} key={index}>
               <div className="groups_main">
-                <div style={{ background: `${data.color}` }} className="groups_icon">
+                <div
+                  style={{ background: `${data.color}` }}
+                  className="groups_icon"
+                >
                   {/* <img alt="Silhouette of mountains" src="/assets/101.png" /> */}
                 </div>
                 <div className="groups_labels">
@@ -35,7 +45,11 @@ const Groups: React.FC = () => {
                       <span className="bold">{data.name}</span>
                     </IonLabel>
                     <div className="groups_headsub">
-                      <img className="groups_posi" alt="position" src="/assets/icon/26.svg" />
+                      <img
+                        className="groups_posi"
+                        alt="position"
+                        src="/assets/icon/26.svg"
+                      />
                       <IonLabel className="groups_no">
                         <span className="bold">1</span>
                       </IonLabel>
@@ -43,16 +57,20 @@ const Groups: React.FC = () => {
                   </div>
                   <div className="groups_participants">
                     <IonLabel className="groups_head1">Group . 6 </IonLabel>
-                    <img className="groups_person" alt="person" src="/assets/icon/19.svg" />
+                    <img
+                      className="groups_person"
+                      alt="person"
+                      src="/assets/icon/19.svg"
+                    />
                   </div>
                 </div>
               </div>
             </Link>
-          )
+          );
         })}
       </IonContent>
     </IonPage>
-  )
-}
+  );
+};
 
-export default Groups
+export default Groups;
