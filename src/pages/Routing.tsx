@@ -22,6 +22,7 @@ import {
   pieChart,
 } from "ionicons/icons";
 import "./Routing.scss";
+import Home from "./Home";
 
 interface SingleGroupPageProps
   extends RouteComponentProps<{
@@ -36,6 +37,9 @@ const Routing: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
+            <Route exact path="/home">
+              <Home />
+            </Route>
             <Route exact path="/">
               <Redirect to="/home" />
             </Route>

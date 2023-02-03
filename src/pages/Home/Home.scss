@@ -1,0 +1,138 @@
+.home-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 125px;
+
+  background: var(--neutral-500);
+  border-radius: 0px 0px 10px 10px;
+  padding: 28px;
+  color: var(--neutral-100);
+
+  img {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+}
+
+.home-main {
+  padding: 26px;
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    p {
+      color: #a5a5a5;
+    }
+  }
+}
+
+.scroll-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem;
+  background: var(--neutral-500);
+  overflow-x: scroll;
+
+  border-radius: 4px;
+  height: 69px;
+  width: 100%;
+  margin-top: 18px;
+  padding: 10px;
+
+  .current-date {
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background: #2a67f5;
+    display: grid;
+    place-items: center;
+
+    transform: translateY(-4px);
+
+    p {
+      color: var(--neutral-100) !important;
+    }
+  }
+
+  .scroll-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    p {
+      color: var(--neutral-100);
+    }
+  }
+}
+
+.flickity-button {
+  background: transparent;
+}
+
+.home-tasks {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  .tasks {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+
+    span {
+      margin: 1rem 0;
+    }
+
+    .tasks-container {
+      padding-left: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      width: 100%;
+
+      .task {
+        background: var(--neutral-500);
+        border-radius: 4px;
+
+        width: 100%;
+        height: 36px;
+        display: flex;
+        flex-direction: row;
+
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+
+        .color-bar {
+          border-radius: 4px 0 0 4px;
+          position: absolute;
+          width: 0.5rem;
+          height: 2.25rem;
+        }
+
+        .habit {
+          display: flex;
+          padding: 10px;
+          padding-left: 20px;
+          gap: 8px;
+
+          p {
+            color: var(--neutral-300);
+          }
+        }
+
+        .tick {
+          width: 1rem;
+          height: 1rem;
+          border-radius: 50%;
+
+          background: #69be81;
+        }
+      }
+    }
+  }
+}
