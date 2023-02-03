@@ -23,6 +23,7 @@ import {
 } from "ionicons/icons";
 import "./Routing.scss";
 import Home from "./Home";
+import Friends from "./Friends";
 
 interface SingleGroupPageProps
   extends RouteComponentProps<{
@@ -39,6 +40,9 @@ const Routing: React.FC = () => {
           <IonRouterOutlet>
             <Route exact path="/home">
               <Home />
+            </Route>
+            <Route exact path="/friends">
+              <Friends />
             </Route>
             <Route exact path="/">
               <Redirect to="/home" />
