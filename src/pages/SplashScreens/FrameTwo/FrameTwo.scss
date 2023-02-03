@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+.frametwo_comp {
+  height: 100%;
+  width: 100%;
+  background-color: #292a2c;
+
+  .frametwo_main {
+    width: 90%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .frametwo_card1 {
+      width: 90%;
+      height: 35%;
+      margin: 12vh 0vw 0vw 0vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+
+      .frametwo_card1text {
+        text-align: left;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 31px;
+        line-height: 120%;
+        color: #ffff;
+        .frametwo_card1textcolor {
+          display: inline;
+          color: #2a67f5;
+        }
+      }
+      .frametwo_card1button {
+        padding: 3vw;
+        width: 100%;
+        color: white;
+        background-color: #000000;
+        text-align: left;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .frametwo_card1buttontext {
+          width: 70%;
+        }
+      }
+    }
+    .frametwo_card2 {
+      width: 90%;
+      height: 37%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+
+      .frametwo_card2text {
+        text-align: left;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 31px;
+        line-height: 120%;
+        color: #ffff;
+        .frametwo_card2textcolor {
+          display: inline;
+          color: #2a67f5;
+        }
+      }
+      .frametwo_card2button {
+        width: 100%;
+        color: white;
+        background-color: #000000;
+        text-align: left;
+        padding: 4vw;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .frametwo_card2buttontext {
+          width: 70%;
+        }
+      }
+    }
+  }
+}

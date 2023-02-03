@@ -1,0 +1,48 @@
+.login-color {
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'Inter';
+  width: 85%;
+}
+
+.login_head {
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  margin-top: 30%;
+  margin-left: 80px;
+}
+
+.login_input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 79px;
+  margin-left: 45px;
+  gap: 36px;
+}
+
+.login_btn {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 61px;
+  color: white;
+  text-transform: initial;
+}
+
+.login_check {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+}
+
+.login_last {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 34px;
+}
+
+.login_forgot {
+  margin-top: 3.4px;
+}

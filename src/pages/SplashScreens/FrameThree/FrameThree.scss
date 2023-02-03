@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+.framethree_comp {
+  height: 100%;
+  width: 100%;
+  background-color: #292a2c;
+
+  .framethree_main {
+    width: 90%;
+    height: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+    .framethree_card1 {
+      width: 90%;
+      height: 60%;
+      margin: 12vh 0vw 0vw 0vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      .framethree_card1text {
+        text-align: left;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 900;
+        font-size: 31px;
+        line-height: 120%;
+        color: #ffff;
+        .framethree_card1textcolor {
+          display: inline;
+          color: #2a67f5;
+        }
+      }
+      .framethree_card1images {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        .framethree_card1images1 {
+          width: 48%;
+        }
+      }
+    }
+    .framethree_card2 {
+      width: 90%;
+      height: 10%;
+      margin: 10vh 0vw 0vw 0vw;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .framethree_card2main {
+        width: 100%;
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 3vw;
+        border-radius: 4px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        .framethree_card2images {
+          margin: 0vw 2vw 0vw 0vw;
+        }
+      }
+    }
+  }
+}

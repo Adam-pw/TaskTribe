@@ -1,0 +1,38 @@
+.sign-color {
+  font-weight: 700;
+  font-size: 13px;
+  font-family: 'Inter';
+  width: 85%;
+}
+
+.sign_head {
+  display: flex;
+  flex-direction: row;
+  gap: 9px;
+  margin-top: 30%;
+  margin-left: 45px;
+}
+
+.sign_input {
+  display: flex;
+  flex-direction: column;
+  margin-top: 79px;
+  margin-left: 45px;
+  gap: 36px;
+}
+
+.sign_btn {
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-top: 61px;
+  color: white;
+  text-transform: initial;
+}
+
+.sign_sub {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  justify-content: center;
+  margin-top: 18px;
+}
