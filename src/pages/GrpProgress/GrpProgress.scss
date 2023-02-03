@@ -1,0 +1,79 @@
+.Grpprog_headercard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #b00000;
+  color: white;
+  padding-top: 9px;
+  padding-bottom: 61px;
+
+  .Grpprog_headercardback {
+    width: 10%;
+  }
+  .Grpprog_headercardback1 {
+    width: 40%;
+    background-color: #292A2C;
+  }
+}
+.Grpprog_box {
+  position: absolute;
+  top: 96px;
+  left: 12.5%;
+  width: 101px;
+  height: 42px;
+  background-color: #ff0000;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  &_text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+  }
+  &_icon {
+    width: 19px;
+    height: 18px;
+    font-size: 18px;
+  }
+}
+.Grp_overview{
+  background-color: #292a2c;
+  margin: 45px 8px 8px 8px;
+  border-radius: 4px;
+
+  &-1{
+    color: var( --neutral-100);
+    padding: 8px 5px;
+  }
+
+  &-2{
+
+   background-color: #292A2C;
+   margin: 8px 30px 30px 30px;
+    
+    &-chart{
+      color: white !important;
+    }
+  }
+}
+.Grp_heat-map{
+  background-color: #292a2c;
+  
+  margin: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 4px;
+
+
+}
+.Grp_bar{
+  background-color: #292a2c;
+  margin: 8px 30px 30px 30px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 4px;
+}
