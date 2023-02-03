@@ -1,0 +1,76 @@
+.indprog_headercardmain {
+  background-color: black !important; 
+  opacity: 90% !important;
+
+.indprog_headercard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #8833b0;
+  color: white;
+  padding-top: 9px;
+  padding-bottom: 61px;
+
+  .indprog_headercardback {
+    width: 10%;
+  }
+  .indprog_headercardback1 {
+    width: 40%;
+  }
+}
+}
+.indprog_box {
+  position: absolute;
+  top: 96px;
+  left: 12.5%;
+  width: 101px;
+  height: 42px;
+  background-color: #df5eff;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+
+  &_text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 120%;
+  }
+  &_icon {
+    width: 19px;
+    height: 18px;
+    font-size: 18px;
+  }
+}
+.overview{
+  background-color: #292a2c;
+  margin: 45px 8px 8px 8px;
+  border-radius: 4px;
+
+  &-1{
+    color: var(--primary);
+    padding: 8px 5px;
+  }
+
+  &-2{
+    &-chart{
+      color: white !important;
+    }
+  }
+}
+.heat-map{
+  background-color: #292a2c;
+  margin: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 4px;
+}
+.bar{
+  background-color: #292a2c;
+  margin: 8px 8px 8px 8px;
+  padding: 8px 8px 8px 8px;
+  border-radius: 4px;
+}

@@ -1,0 +1,94 @@
+.profile_content {
+  .profile_top {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15%;
+    position: relative;
+    height: 50px;
+  }
+
+  .profile_image {
+    z-index: 1;
+    position: absolute;
+    top: 1.8rem;
+    height: 100px;
+    width: 95vw;
+    border-radius: 2vw;
+    background-color: #292a2c;
+  }
+  .profile_image1 {
+    z-index: 2;
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 3.9rem;
+    width: 3.9rem;
+    border-radius: 50%;
+  }
+
+  .profile_main {
+    margin-top: 34px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 3vw;
+  }
+
+  .profile_para {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    p {
+      color: var(--neutral-300);
+    }
+  }
+
+  .profile_cads {
+    margin-top: 100px;
+
+    .profile_mains {
+      display: flex;
+      flex-direction: row;
+
+      align-items: center;
+      padding-top: 1rem;
+
+      margin-left: 2rem;
+    }
+    .profile_labels {
+      width: 75%;
+
+      .profile_head {
+        margin-left: 1rem;
+      }
+
+      .profile_position {
+        display: flex;
+        flex-direction: row;
+      }
+      .profile_positions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-items: baseline;
+      }
+
+      .profile_toggle {
+        // padding-left: 0;
+        // padding-right: 0;
+        // height: 1vw;
+        // width: 1vw;
+        // margin-left: 50vw;
+        // margin-bottom: 8vw;
+
+        height: 1rem;
+        width: 1rem;
+        margin-left: 50%;
+        margin-bottom: 1rem;
+      }
+    }
+  }
+}
