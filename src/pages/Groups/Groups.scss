@@ -1,0 +1,97 @@
+.Groups_header {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .Groups_headermain {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2vh 3vw 0vh 3vw;
+
+    .Groups_headermaintext {
+      width: 80%;
+    }
+  }
+  .Groups_headermainsub {
+    font-size: 3.5vw;
+    margin: 1vh 3vw 0vh 6vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 120%;
+    color: #787878;
+  }
+  .Groups_headermainline {
+    width: 84.44%;
+    height: 1px;
+    margin: auto;
+    background: #d9d9d9;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+}
+
+.groups_content {
+  background-color: black;
+
+  .groups_main {
+    display: flex;
+    flex-direction: row;
+    // justify-content: space-between;
+    gap: 27px;
+    align-items: center;
+    margin: 2.5vh 16px 2vh 16px;
+
+    .groups_icon{
+      width: 4.5rem;
+      height: 4rem;
+      border-radius: 10px;
+    }
+
+    .groups_labels {
+      width: 85%;
+
+      .groups_head {
+        margin: 0.6vh 0vh;
+      }
+
+      .groups_head1 {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 10px;
+        line-height: 120%;
+        color: #808080;
+      }
+
+      .groups_participants {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 1vw;
+      }
+      .groups_person {
+        margin-left: 1vw;
+      }
+
+      .groups_position {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .groups_headsub {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .groups_no {
+          margin-left: 3px;
+        }
+      }
+    }
+  }
+}
