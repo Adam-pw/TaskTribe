@@ -1,0 +1,7 @@
+{
+  "name": "habits-go",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
