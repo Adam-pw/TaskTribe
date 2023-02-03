@@ -24,6 +24,8 @@ import {
 import "./Routing.scss";
 import Home from "./Home";
 import Friends from "./Friends";
+import Groups from "./Groups";
+import GrpProgress from "./GrpProgress";
 
 interface SingleGroupPageProps
   extends RouteComponentProps<{
@@ -46,6 +48,12 @@ const Routing: React.FC = () => {
             </Route>
             <Route exact path="/">
               <Redirect to="/home" />
+            </Route>
+            <Route exact path="/groups">
+              <Groups/>
+            </Route>
+            <Route exact path="/groupprog">
+              <GrpProgress/>
             </Route>
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
