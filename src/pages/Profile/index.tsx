@@ -1,29 +1,22 @@
-import { IonPage, IonContent, IonLabel, IonToggle } from '@ionic/react'
-import { useEffect, useState } from 'react'
-import { getUser, logout } from '../../utils/feathers/auth'
-import './Profile.scss'
+import { IonPage, IonContent, IonLabel, IonToggle } from "@ionic/react";
+import { useEffect, useState } from "react";
+import "./Profile.scss";
 
 const Profile: React.FC = () => {
-  const [user, setUser] = useState({ name: '', email: '', avatar: '' })
-
-  useEffect(() => {
-    getUser().then((res) => {
-      setUser(res)
-    })
-  })
+  const [user, setUser] = useState({ name: "", email: "", avatar: "" });
 
   return (
     <IonPage>
       <IonContent className="profile_content">
-        
         <div className="profile_top">
           <img className="profile_image1" src={user.avatar} alt="" />
-         
+
           <div className="profile_image">
-          
             <div className="profile_main">
               <h6 className="bold">{user?.name}</h6>
-              <div><img className=''src="/assets/icon/20.svg" alt="" /></div>
+              <div>
+                <img className="" src="/assets/icon/20.svg" alt="" />
+              </div>
             </div>
             <div className="profile_para">
               <p>{user.email}</p>
@@ -89,11 +82,7 @@ const Profile: React.FC = () => {
             <div className="profile_labels">
               <div className="profile_position">
                 <IonLabel className="profile_head">
-                  <span  onClick={() => {
-              logout().then(() => {
-                window.location.reload()
-              })
-            }}>Logout</span>
+                  <span>Logout</span>
                 </IonLabel>
               </div>
             </div>
@@ -101,7 +90,7 @@ const Profile: React.FC = () => {
         </div>
       </IonContent>
     </IonPage>
-  )
-}
+  );
+};
 
-export default Profile
+export default Profile;

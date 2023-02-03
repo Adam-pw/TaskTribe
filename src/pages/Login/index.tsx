@@ -65,7 +65,7 @@ const Login: React.FC = () => {
           </IonItem>
         </div>
 
-        <IonButton expand="block" className="login_btn" onClick={loginUser}>
+        <IonButton expand="block" className="login_btn">
           <span className="bold">Login</span>
         </IonButton>
 

@@ -1,7 +1,7 @@
 import { IonPage, IonContent, IonBackButton, IonIcon } from '@ionic/react'
 import { readerOutline } from 'ionicons/icons'
 import './IndProgress.scss'
-import CalendarHeatmap from 'react-calendar-heatmap'
+// import CalendarHeatmap from 'react-calendar-heatmap'
 import 'react-calendar-heatmap/dist/styles.css'
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
@@ -9,8 +9,6 @@ import { RadialLinearScale, PointElement, LineElement, Filler } from 'chart.js'
 import { Radar } from 'react-chartjs-2'
 import { RouteComponentProps } from 'react-router'
 import { useState, useEffect } from 'react'
-import { getHabitsById } from '../../utils/feathers/habits'
-
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend)
@@ -73,11 +71,6 @@ interface SingleGroupPageProps
 const IndProgress: React.FC<SingleGroupPageProps> = ({ match }) => {
   const [habitData, setHabitData] = useState({ name: '', color: '' })
 
-  useEffect(() => {
-    getHabitsById(match.params.id).then((res) => {
-      setHabitData(res)
-    })
-  })
   return (
     <IonPage>
       <IonContent>
@@ -113,7 +106,7 @@ const IndProgress: React.FC<SingleGroupPageProps> = ({ match }) => {
           <Bar width={100} height={100} options={options} data={data1} />
         </div>
         <div className="heat-map">
-          <CalendarHeatmap
+          {/* <CalendarHeatmap
             startDate={new Date('2022-01-01')}
             endDate={new Date('2022-06-31')}
             values={[
@@ -122,7 +115,7 @@ const IndProgress: React.FC<SingleGroupPageProps> = ({ match }) => {
               { date: '2022-01-30', count: 38 }
               // ...and so on
             ]}
-          />
+          /> */}
         </div>
       </IonContent>
     </IonPage>

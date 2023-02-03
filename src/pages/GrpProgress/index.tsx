@@ -1,9 +1,16 @@
 import { IonPage, IonContent, IonBackButton, IonIcon } from '@ionic/react'
 import { readerOutline, walk } from 'ionicons/icons'
 import './GrpProgress.scss'
+// import CalendarHeatmap from 'react-calendar-heatmap'
 import 'react-calendar-heatmap/dist/styles.css'
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+import { RadialLinearScale, PointElement, LineElement, Filler } from 'chart.js'
+import { Radar } from 'react-chartjs-2'
 
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
+ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend)
 
 export const data = {
   labels: ['Streak', 'Weekly progress', 'Montly progress', 'Failure'],
@@ -77,11 +84,24 @@ const GrpProgress: React.FC = () => {
             <b>Overview</b>
           </div>
           <div className="Grp_overview-2">
+            <Radar redraw className="Grp_overview-2-chart" data={data} />
           </div>
         </div>
         <div className="Grp_bar">
+          <Bar width={100} height={100} options={options} data={data1} />
         </div>
-        <div className="Grp_heat-map">        </div>
+        <div className="Grp_heat-map">
+          {/* <CalendarHeatmap
+            startDate={new Date('2022-01-01')}
+            endDate={new Date('2022-06-31')}
+            values={[
+              { date: '2022-01-01', count: 12 },
+              { date: '2022-01-22', count: 122 },
+              { date: '2022-01-30', count: 38 }
+              // ...and so on
+            ]}
+          /> */}
+        </div>
       </IonContent>
     </IonPage>
   )
