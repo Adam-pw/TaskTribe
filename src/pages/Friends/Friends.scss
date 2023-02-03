@@ -1,0 +1,88 @@
+.friends_header {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  .friends_headermain {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 2vh 3vw 0vh 3vw;
+
+    .friends_headermaintext {
+      width: 70%;
+    }
+  }
+  .friends_headermainsub {
+    font-size: 3.5vw;
+    margin: 1vh 3vw 0vh 6vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 120%;
+    color: #787878;
+  }
+  .friends_headermainline {
+    width: 84.44%;
+    height: 1px;
+    margin: auto;
+    background: #d9d9d9;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+  }
+}
+
+.friends_card {
+  width: 93%;
+  background-color: #121212;
+  box-shadow: none;
+  margin-left: 20px;
+  // margin-right: auto;
+  // margin-left: 10vw;
+
+  .friends_main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    &sub {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 11px;
+
+      .friends_image {
+        height: 33px;
+        width: 34px;
+      }
+      .friends_text {
+        color: white;
+      }
+    }
+    &sub2 {
+      display: flex;
+      flex-direction: row;
+      gap: 40.7px;
+      margin-right: 10px;
+      .friends_text2 {
+        color: white;
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 120%;
+      }
+      .friends_arrow {
+        // width: 30px;
+        text-align: center;
+        .friends_arrowimg {
+          // width: 10%;
+        }
+      }
+    }
+  }
+}

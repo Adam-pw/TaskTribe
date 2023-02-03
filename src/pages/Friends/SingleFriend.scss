@@ -1,0 +1,101 @@
+.openfriends_headercard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #98159b;
+  color: white;
+  padding-top: 9px;
+  padding-bottom: 61px;
+
+  .openfriends_headercardback {
+    width: 10%;
+  }
+  .openfriends_headercardback1 {
+    width: 40%;
+  }
+}
+.openfriends_profile {
+  position: absolute;
+  top: 74px;
+  left: 12.5%;
+
+  .openfriends_profile1 {
+    height: 79px;
+    border-radius: 50%;
+  }
+}
+
+.openfriends_main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  justify-content: space-around;
+
+  .openfriends_card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 75%;
+    margin: 0vw auto;
+  }
+
+  .openfriends_cardsub {
+    margin: 14px auto 0px auto;
+    width: 75%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 120%;
+    color: #787878;
+
+    .openfriends_cardsubcolor {
+      display: inline;
+      color: #2a67f5;
+    }
+  }
+  .openfriends_cardline {
+    background-color: #444444;
+    margin-top: 28px;
+    height: 1px;
+    width: 100%;
+  }
+}
+
+.openfriends_habit {
+  background-color: #292a2c;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 11px;
+  padding: 1vh 0vw;
+  height: 41px;
+  border-radius: 8px 8px 8px 8px;
+
+  .openfriends_habitline {
+    background-color: #2a67f5;
+    border-radius: 8px 0px 0vw 8px;
+    height: 41px;
+    position: absolute;
+    width: 0.5rem;
+  }
+  &sub {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    margin-left: 18px;
+    .openfriends_habittext {
+    }
+  }
+  .openfriends_habitimages {
+    gap: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0px 32px;
+  }
+}
