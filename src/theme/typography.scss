@@ -1,0 +1,56 @@
+@mixin base-font {
+  margin: 0;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+h1 {
+  @include base-font();
+  font-size: 61px;
+}
+
+h2 {
+  @include base-font();
+  font-size: 49px;
+}
+
+h3 {
+  @include base-font();
+  font-size: 39px;
+}
+
+h4 {
+  @include base-font();
+  font-size: 31px;
+}
+
+h5 {
+  @include base-font();
+  font-size: 25px;
+}
+
+h6 {
+  @include base-font();
+  font-size: 20px;
+}
+
+span {
+  @include base-font();
+  font-size: 16px;
+}
+
+p {
+  @include base-font();
+  font-size: 13px;
+}
+
+a {
+  all: inherit;
+}
