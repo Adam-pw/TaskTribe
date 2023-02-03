@@ -1,22 +1,11 @@
 import { IonPage, IonHeader, IonLabel, IonContent } from '@ionic/react'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getUser } from '../../utils/feathers/auth'
-import { getGroups } from '../../utils/feathers/groups'
 import './Groups.scss'
 
 const Groups: React.FC = () => {
   const [user, setUser] = useState({ _id: '', name: '', email: '', avatar: '' })
   const [groups, setGroups] = useState([])
-
-  useEffect(() => {
-    getUser().then((res) => {
-      setUser(res)
-    })
-    getGroups(user._id).then((res) => {
-      setGroups(res.data)
-    })
-  })
 
   return (
     <IonPage>

@@ -2,7 +2,6 @@ import { IonPage, IonContent, IonBackButton, IonIcon, IonButton } from '@ionic/r
 import { leafOutline, person, pulse, readerOutline, sunny, walk } from 'ionicons/icons'
 import { useEffect, useState } from 'react'
 import { Link, RouteComponentProps } from 'react-router-dom'
-import { getGroup } from '../../utils/feathers/groups'
 import './SingleGroup.scss'
 
 interface SingleGroupPageProps
@@ -13,11 +12,7 @@ interface SingleGroupPageProps
 const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
   const [groupData, setGroupData] = useState({ name: '', color: '' })
 
-  useEffect(() => {
-    getGroup(match.params.id).then((res) => {
-      setGroupData(res)
-    })
-  })
+ 
   return (
     <IonPage>
       <IonContent>
