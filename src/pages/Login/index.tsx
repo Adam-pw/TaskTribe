@@ -25,6 +25,7 @@ const Login: React.FC = () => {
   const [signInWithEmailAndPassword, _u, _l, _e] =
     useSignInWithEmailAndPassword(auth);
 
+  const [disabled, setDisabled] = useState<boolean>(false);
   useEffect(() => {
     if ((!user && !loading) || error) {
       // history.push("/");
@@ -68,15 +69,23 @@ const Login: React.FC = () => {
         <IonButton
           expand="block"
           className="login_btn"
-          onClick={() => {
+          style={{backgroundColor: disabled ?"#00008B":""}}
+          onClick={(e) => {
+            e.preventDefault();
+            setDisabled(true);
             if (email && password)
               signInWithEmailAndPassword(email, password).then((res) => {
                 if (res?.user) history.push("/");
                 console.log(res);
-              });
+              })
+              .finally(()=>{
+                setDisabled(false)
+              })
           }}
         >
-          <span className="bold">Login</span>
+          <span className="bold">
+            {!disabled ? "Log In" : "Logging In"}{" "}
+          </span>
         </IonButton>
 
         <div className="login_last">

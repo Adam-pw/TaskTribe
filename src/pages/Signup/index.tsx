@@ -23,7 +23,11 @@ const Singup: React.FC = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-  const signUp = async () => {
+  const [disabled,setDisabled] = useState<boolean>(false)
+
+  const signUp = async (e:any) => {
+    e.preventDefault();
+    setDisabled(true);
     if (email && password)
       createUserWithEmailAndPassword(email, password)
         .then((res) => {
@@ -35,7 +39,10 @@ const Singup: React.FC = () => {
                 { s: "100", r: "x", d: "retro" },
                 true
               ),
-            });
+            })
+            .finally(()=>{
+              setDisabled(false)
+            })
 
             setUserDetails(res?.user, {
               habits: [],
@@ -91,8 +98,15 @@ const Singup: React.FC = () => {
           </IonItem>
         </div>
 
-        <IonButton expand="block" className="sign_btn" onClick={() => signUp()}>
-          <span className="bold">Create account</span>
+        <IonButton expand="block" 
+        disabled={disabled}
+        className="sign_btn" 
+        style={{backgroundColor: disabled ?"#00008B":""}}
+        onClick={(e) => 
+          signUp(e)}>
+          <span className="bold">
+          {!disabled ? "Create Account" : "Signing Up"} 
+          </span>
         </IonButton>
 
         <div className="sign_sub">

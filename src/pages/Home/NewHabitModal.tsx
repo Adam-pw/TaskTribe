@@ -69,6 +69,9 @@ function CustomHabit({
 
   const [nomeasure, setnomeasure] = useState(false);
   const [measure, setmeasure] = useState(false);
+  
+  const [disabled,setDisabled] = useState<boolean>(false)
+  
   const NoMeasurable = () => {
     setnomeasure(true);
     setmeasure(false);
@@ -274,7 +277,10 @@ function CustomHabit({
           <div className="create-habit">
             <button
               className="new-button"
-              onClick={() => {
+              style={{backgroundColor: disabled ?"#00008B":""}}
+              onClick={(e) => {
+                e.preventDefault();
+                setDisabled(true);
                 if (user && name && type)
                   createHabit(user, {
                     owner: user.uid,
@@ -288,7 +294,7 @@ function CustomHabit({
                   }).then(() => dismiss("habit"));
               }}
             >
-              Save
+              {disabled ? "Saving" : "Save"} 
             </button>
           </div>
         </IonContent>
@@ -304,6 +310,7 @@ function DefaultHabit({
   dismiss: (type: "habit" | "group") => void;
   setCustom: React.Dispatch<SetStateAction<Boolean>>;
 }) {
+  
   return (
     <>
       <div className="habit-container">

@@ -80,6 +80,9 @@ function DefaultHabit({
   const [members, setMembers] = useState<Array<string>>([]);
 
   const [user, loading, error] = useAuthState(auth);
+  
+  const [disabled,setDisabled] = useState<boolean>(false)
+  
   return (
     <>
       <div className="habit-container">
@@ -171,17 +174,27 @@ function DefaultHabit({
       </div>
       <div
         className="create-habit"
-        onClick={() => {
+      >
+        <button disabled={disabled}
+        onClick={(e) => {
+          e.preventDefault();
+          setDisabled(true);
           if (user && name)
             createGroup(user, {
               owner: user.uid,
               members: [user.uid],
               name,
               description,
-            }).then(() => dismiss("group"));
+            }).then(() => dismiss("group"))
+            .finally(()=>{
+              setDisabled(false);
+            })
         }}
-      >
-        <button className="new-button">Save</button>
+        className="new-button"
+        style={{backgroundColor: disabled ?"#00008B":""}}
+        >
+          {disabled ? "Saving" : "Save"} 
+        </button>
       </div>
     </>
   );
