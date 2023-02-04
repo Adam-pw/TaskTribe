@@ -50,7 +50,7 @@ export default function Friends() {
             </div>
           </div>
           <div className="friends_headermainsub">
-            You have {users.length} friends
+            You have {users.length - 1} Friends
           </div>
           <div className="friends_headermainline"></div>
         </IonHeader>

@@ -1,12 +1,18 @@
 import { auth, db } from ".";
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
 import { UserDataInterface } from "../../interfaces/users.interface";
 import { signInWithEmailAndPassword, User } from "firebase/auth";
 
 const usersCollectionRef = collection(db, "users");
 
-export const getUserDetails = async (user: User) => {
-  return (await getDoc(doc(db, "users", user.uid))).data();
+export const getUserDetails = async (user_id: string) => {
+  return (await getDoc(doc(db, "users", user_id))).data();
 };
 
 export const getAllUsers = async () => {
@@ -21,7 +27,7 @@ export const getAllUsers = async () => {
 };
 
 export const setUserDetails = async (user: User, data: UserDataInterface) => {
-  return await setDoc(doc(db, "users", user.uid), { ...data });
+  return await updateDoc(doc(db, "users", user.uid), { ...data });
 };
 
 export const signIn = async (email: string, password: string) => {

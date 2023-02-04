@@ -1,15 +1,23 @@
-import { IonPage, IonContent, IonBackButton } from '@ionic/react'
-import './SingleFriend.scss'
-import { RouteComponentProps } from 'react-router-dom'
-import { useState } from 'react'
+import { IonPage, IonContent, IonBackButton } from "@ionic/react";
+import "./SingleFriend.scss";
+import { RouteComponentProps } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { getUserDetails } from "../../utils/firebase/user";
 
 interface SingleGroupPageProps
   extends RouteComponentProps<{
-    id: string
+    id: string;
   }> {}
 
 const SingleFriend: React.FC<SingleGroupPageProps> = ({ match }) => {
-  const [userData, setUserData] = useState({ name: '', color: '', avatar: '' })
+  const [userData, setUserData] = useState({ photoURL: "", displayName: "" });
+
+  useEffect(() => {
+    getUserDetails(match.params.id).then((res: any) => {
+      setUserData(res);
+      console.log(res);
+    });
+  }, [match.params.id]);
 
   return (
     <IonPage>
@@ -27,19 +35,24 @@ const SingleFriend: React.FC<SingleGroupPageProps> = ({ match }) => {
           </div>
         </div>
         <div className="openfriends_profile">
-          <img className="openfriends_profile1" alt="profile" src={userData.avatar} />
+          <img
+            className="openfriends_profile1"
+            alt="profile"
+            src={userData.photoURL}
+          />
         </div>
         <div className="openfriends_main">
           <div className="openfriends_card">
             <div className="bold">
-              <h6>{userData.name}</h6>
+              <h6>{userData.displayName}</h6>
             </div>
             <div>
               <img alt="profile" src="/assets/icon/21.svg" />
             </div>
           </div>
           <div className="openfriends_cardsub">
-            You and {userData.name} have <div className="openfriends_cardsubcolor">5 habits</div> in common
+            You and {userData.displayName} have{" "}
+            <div className="openfriends_cardsubcolor">5 habits</div> in common
           </div>
           <div className="openfriends_cardline"></div>
         </div>
@@ -61,10 +74,10 @@ const SingleFriend: React.FC<SingleGroupPageProps> = ({ match }) => {
                 <img src="assets/icon/23.svg" alt="icon" />
               </div>
             </div>
-          )
+          );
         })}
       </IonContent>
     </IonPage>
-  )
-}
-export default SingleFriend
+  );
+};
+export default SingleFriend;

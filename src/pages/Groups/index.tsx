@@ -2,7 +2,6 @@ import { IonPage, IonHeader, IonLabel, IonContent } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
-import { GroupInterface } from "../../interfaces/groups.interface";
 import { auth } from "../../utils/firebase";
 import { getUserGroups } from "../../utils/firebase/groups";
 import "./Groups.scss";
