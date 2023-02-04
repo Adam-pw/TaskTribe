@@ -103,6 +103,7 @@ const Singup: React.FC = () => {
               onIonInput={(e) => {
                 setPassword(e.target.value?.toString());
               }}
+              type="password"
               placeholder="Enter Password"
             ></IonInput>
           </IonItem>

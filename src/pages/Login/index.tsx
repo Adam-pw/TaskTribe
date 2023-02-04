@@ -57,7 +57,7 @@ const Login: React.FC = () => {
           <IonItem className="login-color" fill="outline">
             <IonLabel position="floating">Password</IonLabel>
             <IonInput
-              type="text"
+              type="password"
               onIonInput={(e) => {
                 setPassword(e.target.value?.toString());
               }}

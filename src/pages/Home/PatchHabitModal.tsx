@@ -57,7 +57,7 @@ function DefaultHabit({
           </div>
           <div className="div-name">
             <div className="div-name-icon">
-              <img alt="pencil" src="./assets/icon/40.svg" />
+              <img alt="pencil" src="./assets/icon/21.svg" />
             </div>
             <IonInput
               className="div-name-text"

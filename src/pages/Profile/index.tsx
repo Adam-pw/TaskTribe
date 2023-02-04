@@ -1,5 +1,6 @@
 import { IonPage, IonContent, IonLabel, IonToggle } from "@ionic/react";
 import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
+import { Link } from "react-router-dom";
 import { auth } from "../../utils/firebase";
 import "./Profile.scss";
 
@@ -67,7 +68,7 @@ const Profile: React.FC = () => {
               </div>
             </div>
           </div>
-          <button
+          {/* <button
             onClick={() => {
               signOut().then(() => {
                 window.location.reload();
@@ -75,8 +76,7 @@ const Profile: React.FC = () => {
             }}
           >
             logout
-          </button>
-
+          </button> */}
           <div className="profile_mains">
             <div className="profile_photu">
               <img alt="Silhouette of mountains" src="/assets/icon/30.svg" />
@@ -84,7 +84,15 @@ const Profile: React.FC = () => {
             <div className="profile_labels">
               <div className="profile_position">
                 <IonLabel className="profile_head">
-                  <span>Logout</span>
+                  <span
+                    onClick={() => {
+                      signOut().then(() => {
+                        window.location.reload();
+                      });
+                    }}
+                  >
+                    <Link to="/splashscreens">Logout</Link>
+                  </span>
                 </IonLabel>
               </div>
             </div>
