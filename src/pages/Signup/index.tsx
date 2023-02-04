@@ -23,9 +23,9 @@ const Singup: React.FC = () => {
   const [createUserWithEmailAndPassword, user, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
-  const [disabled,setDisabled] = useState<boolean>(false)
+  const [disabled, setDisabled] = useState<boolean>(false);
 
-  const signUp = async (e:any) => {
+  const signUp = async (e: any) => {
     e.preventDefault();
     setDisabled(true);
     if (email && password)
@@ -39,10 +39,9 @@ const Singup: React.FC = () => {
                 { s: "100", r: "x", d: "retro" },
                 true
               ),
-            })
-            .finally(()=>{
-              setDisabled(false)
-            })
+            }).finally(() => {
+              setDisabled(false);
+            });
 
             setUserDetails(res?.user, {
               habits: [],
@@ -50,7 +49,12 @@ const Singup: React.FC = () => {
               friends: [],
 
               uid: res.user.uid,
-              photoURL: res.user.photoURL ?? "",
+              photoURL: gravatar.url(
+                res.user.email ?? "",
+                { s: "100", r: "x", d: "retro" },
+                true
+              ),
+              displayName: res.user.displayName ?? "",
             });
           }
         })
@@ -101,14 +105,15 @@ const Singup: React.FC = () => {
           </IonItem>
         </div>
 
-        <IonButton expand="block" 
-        disabled={disabled}
-        className="sign_btn" 
-        style={{backgroundColor: disabled ?"#00008B":""}}
-        onClick={(e) => 
-          signUp(e)}>
+        <IonButton
+          expand="block"
+          disabled={disabled}
+          className="sign_btn"
+          style={{ backgroundColor: disabled ? "#00008B" : "" }}
+          onClick={(e) => signUp(e)}
+        >
           <span className="bold">
-          {!disabled ? "Create Account" : "Signing Up"} 
+            {!disabled ? "Create Account" : "Signing Up"}
           </span>
         </IonButton>
 

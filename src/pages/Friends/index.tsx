@@ -54,6 +54,8 @@ export default function Friends() {
 
         <IonContent>
           {users.map((data: User, index) => {
+            console.log(data);
+
             return (
               <Link to={`/friends/f/${data.uid}`} key={index}>
                 <IonCard className="friends_card">
@@ -79,8 +81,7 @@ export default function Friends() {
               </Link>
             );
           })}
-        <div className="tasks_text">Addup more Friends to see more</div>
-
+          <div className="tasks_text">Addup more Friends to see more</div>
         </IonContent>
       </IonPage>
       <FriendModal
