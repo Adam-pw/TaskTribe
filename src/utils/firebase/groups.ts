@@ -1,6 +1,15 @@
 import { db } from ".";
-import { addDoc, collection, query, where, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  arrayUnion,
+  collection,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 import { GroupInterface } from "../../interfaces/groups.interface";
+import { User } from "firebase/auth";
+import { setUserDetails } from "./user";
 
 const groupsCollectionRef = collection(db, "habits");
 
@@ -16,6 +25,8 @@ export const getGroup = async (userGroups: Array<string>) => {
   });
 };
 
-export const createGroup = async (data: GroupInterface) => {
-  return await addDoc(groupsCollectionRef, { ...data });
+export const createGroup = async (user: User, data: GroupInterface) => {
+  return await addDoc(groupsCollectionRef, { ...data }).then((res) => {
+    setUserDetails(user, { groups: arrayUnion(res.id) });
+  });
 };
