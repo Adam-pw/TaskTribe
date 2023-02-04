@@ -11,7 +11,7 @@ import {
 const usersCollectionRef = collection(db, "users");
 
 export const getUserDetails = async (user: User) => {
-  return (await getDoc(doc(db, "users", user.uid))) as UserDataInterface;
+  return (await getDoc(doc(db, "users", user.uid))).data();
 };
 
 export const setUserDetails = async (user: User, data: UserDataInterface) => {

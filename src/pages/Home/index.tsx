@@ -30,16 +30,15 @@ function Home() {
       history.replace("/login");
     }
 
-    console.log(user);
-
-    if (user)
-      getUserDetails(user).then((res) => {
+    if (user) {
+      getUserDetails(user).then((res: any) => {
         setUserDetails(res);
       });
 
-    getUserHabits(userDetails?.habits as string[]).then((res) => {
-      setHabits(res);
-    });
+      getUserHabits(user).then((res) => {
+        setHabits(res);
+      });
+    }
   }, []);
 
   const getDatesInRange = (min: any, max: any) => {

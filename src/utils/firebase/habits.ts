@@ -15,11 +15,8 @@ import { setUserDetails } from "./user";
 
 const habitsCollectionRef = collection(db, "habits");
 
-export const getUserHabits = async (userHabits: Array<string>) => {
-  const q = query(
-    habitsCollectionRef,
-    where("uid", "array-contains-any", userHabits)
-  );
+export const getUserHabits = async (user: User) => {
+  const q = query(habitsCollectionRef, where("owner", "==", user.uid));
 
   const dataArr: Array<any> = [];
 
@@ -28,7 +25,9 @@ export const getUserHabits = async (userHabits: Array<string>) => {
     dataArr.push(doc.data());
   });
 
-  return dataArr as Array<HabitInterface>;
+  console.log(dataArr);
+
+  return dataArr;
 };
 
 export const getGroupHabits = async () => {};
