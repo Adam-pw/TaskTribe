@@ -11,9 +11,9 @@ import { GroupInterface } from "../../interfaces/groups.interface";
 import { User } from "firebase/auth";
 import { setUserDetails } from "./user";
 
-const groupsCollectionRef = collection(db, "habits");
+const groupsCollectionRef = collection(db, "groups");
 
-export const getGroup = async (userGroups: Array<string>) => {
+export const getUserGroups = async (userGroups: Array<string>) => {
   const q = query(
     groupsCollectionRef,
     where("uid", "array-contains-any", userGroups)

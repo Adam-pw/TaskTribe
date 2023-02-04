@@ -37,10 +37,9 @@ function Home() {
         setUserDetails(res);
       });
 
-    if (userDetails?.habits)
-      getUserHabits(userDetails?.habits as string[]).then((res) => {
-        setHabits(res);
-      });
+    getUserHabits(userDetails?.habits as string[]).then((res) => {
+      setHabits(res);
+    });
   }, []);
 
   const getDatesInRange = (min: any, max: any) => {
