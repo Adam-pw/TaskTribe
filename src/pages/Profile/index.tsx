@@ -1,25 +1,27 @@
+import { User } from "@firebase/auth";
 import { IonPage, IonContent, IonLabel, IonToggle } from "@ionic/react";
 import { useEffect, useState } from "react";
+import { auth } from "../../utils/firebase";
 import "./Profile.scss";
 
 const Profile: React.FC = () => {
-  const [user, setUser] = useState({ name: "", email: "", avatar: "" });
+  const [user, setUser] = useState<User | null>();
 
   return (
     <IonPage>
       <IonContent className="profile_content">
         <div className="profile_top">
-          <img className="profile_image1" src={user.avatar} alt="" />
+          <img className="profile_image1" src={user?.photoURL ?? ""} alt="" />
 
           <div className="profile_image">
             <div className="profile_main">
-              <h6 className="bold">{user?.name}</h6>
+              <h6 className="bold">{user?.displayName}</h6>
               <div>
                 <img className="" src="/assets/icon/20.svg" alt="" />
               </div>
             </div>
             <div className="profile_para">
-              <p>{user.email}</p>
+              <p>{user?.email}</p>
             </div>
           </div>
         </div>
@@ -65,15 +67,15 @@ const Profile: React.FC = () => {
               </div>
             </div>
           </div>
-          {/* <button
+          <button
             onClick={() => {
-              logout().then(() => {
-                window.location.reload()
-              })
+              auth.signOut().then(() => {
+                window.location.reload();
+              });
             }}
           >
             logout
-          </button> */}
+          </button>
 
           <div className="profile_mains">
             <div className="profile_photu">

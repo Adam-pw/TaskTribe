@@ -8,10 +8,10 @@ import { PatchHabitModal } from "./PatchHabitModal";
 import { useHistory } from "react-router";
 import { HabitInterface } from "../../interfaces/habits.interface";
 import { UserDataInterface } from "../../interfaces/users.interface";
-import { User } from "@firebase/auth";
 import { getUserDetails } from "../../utils/firebase/user";
 import { getUserHabits } from "../../utils/firebase/habits";
 import { auth } from "../../utils/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function Home() {
   const scrollRef = useRef<Array<HTMLDivElement | null>>([]);
@@ -19,28 +19,29 @@ function Home() {
 
   const history = useHistory();
 
-  const [user, setUser] = useState<User | null>(null);
   const [userDetails, setUserDetails] = useState<UserDataInterface | null>(
     null
   );
   const [habits, setHabits] = useState<Array<HabitInterface>>([]);
+  const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
-    setUser(auth.currentUser);
-    if (!user) {
-      history.push("/splashscreens");
+    if ((!user && !loading) || error) {
+      history.push("/login");
     }
 
+    console.log(user);
+
     if (user)
-      getUserDetails(user?.uid).then((res) => {
+      getUserDetails(user).then((res) => {
         setUserDetails(res);
       });
 
     if (userDetails?.habits)
-      getUserHabits(userDetails?.habits).then((res) => {
+      getUserHabits(userDetails?.habits as string[]).then((res) => {
         setHabits(res);
       });
-  }, []);
+  });
 
   const getDatesInRange = (min: any, max: any) => {
     return Array((max - min) / 86400000)
@@ -59,7 +60,7 @@ function Home() {
     <IonPage>
       <IonHeader className="home-header">
         <h5 className="bold">
-          Good Morning, <br /> {user.name} !
+          Good Morning, <br /> {user?.displayName} !
         </h5>
         <img src="/assets/sunrise 1.svg" alt="Sunrise" />
       </IonHeader>

@@ -6,8 +6,11 @@ import {
   IonLabel,
   IonPage,
 } from "@ionic/react";
+import { signInAnonymously, updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import { auth } from "../../utils/firebase";
+import { EmailAuthProvider, linkWithCredential } from "firebase/auth";
 import "./Signup.scss";
 
 const Singup: React.FC = () => {
@@ -15,6 +18,19 @@ const Singup: React.FC = () => {
   const [email, setEmail] = useState<string | undefined>("");
   const [password, setPassword] = useState<string | undefined>("");
   const history = useHistory();
+
+  const signUp = async () => {
+    signInAnonymously(auth).then((res) => {
+      updateProfile(res.user, {
+        displayName: name,
+      });
+
+      if (email && password) {
+        const credential = EmailAuthProvider.credential(email, password);
+        linkWithCredential(res.user, credential);
+      }
+    });
+  };
 
   return (
     <IonPage>
@@ -58,7 +74,7 @@ const Singup: React.FC = () => {
           </IonItem>
         </div>
 
-        <IonButton expand="block" className="sign_btn">
+        <IonButton expand="block" className="sign_btn" onClick={() => signUp()}>
           <span className="bold">Create account</span>
         </IonButton>
 

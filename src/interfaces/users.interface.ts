@@ -1,14 +1,11 @@
-export interface UserDataInterface {
-  email: string;
-  password: string;
+import { FieldValue } from "firebase/firestore";
 
-  name: string;
-  avatar?: string;
+export interface UserDataInterface {
   description?: string;
 
-  habits?: string[];
-  groups?: string[];
-  friends?: string[];
+  habits?: string[] | FieldValue;
+  groups?: string[] | FieldValue;
+  friends?: string[] | FieldValue;
 
   //TODO
   // preferences?: any;

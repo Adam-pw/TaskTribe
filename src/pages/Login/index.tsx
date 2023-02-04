@@ -7,29 +7,24 @@ import {
   IonPage,
   IonCheckbox,
 } from "@ionic/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "./Login.scss";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../../utils/firebase";
+import { User } from "@firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string | undefined>("");
   const [password, setPassword] = useState<string | undefined>("");
   const history = useHistory();
+  const [user, loading, error] = useAuthState(auth);
 
-  const [signInWithEmailAndPassword, user, loading, error] =
-    useSignInWithEmailAndPassword(auth);
-
-  const loginUser = () => {
-    if (email && password) {
-      signInWithEmailAndPassword(email, password);
+  useEffect(() => {
+    if ((!user && !loading) || error) {
+      history.push("/");
     }
-
-    if (user) {
-      history.replace("/");
-    }
-  };
+  });
 
   return (
     <IonPage>
