@@ -1,5 +1,5 @@
 import { db } from ".";
-import { addDoc, collection, query, where, getDocs } from "firebase/firestore";
+import { addDoc, collection, query, where, getDocs, updateDoc, doc } from "firebase/firestore";
 import { HabitInterface } from "../../interfaces/habits.interface";
 
 const habitsCollectionRef = collection(db, "habits");
@@ -18,7 +18,9 @@ export const getUserHabits = async (userHabits: Array<string>) => {
 
 export const getGroupHabits = async () => {};
 
-export const updateHabit = async () => {};
+export const updateHabit = async (data:HabitInterface) => {
+  return await updateDoc(doc(db,"habits",),{...data});
+};
 
 export const createHabit = async (data: HabitInterface) => {
   return await addDoc(habitsCollectionRef, { ...data });

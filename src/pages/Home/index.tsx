@@ -6,6 +6,12 @@ import "./Home.scss";
 import { Link } from "react-router-dom";
 import { PatchHabitModal } from "./PatchHabitModal";
 import { useHistory } from "react-router";
+import { HabitInterface } from "../../interfaces/habits.interface";
+import { UserDataInterface } from "../../interfaces/users.interface";
+import { User } from "@firebase/auth";
+import { getUserDetails } from "../../utils/firebase/user";
+import { getUserHabits } from "../../utils/firebase/habits";
+import { auth } from "../../utils/firebase";
 
 function Home() {
   const scrollRef = useRef<Array<HTMLDivElement | null>>([]);
