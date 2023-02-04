@@ -3,6 +3,8 @@ import "./SingleFriend.scss";
 import { RouteComponentProps } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getUserDetails } from "../../utils/firebase/user";
+import { HabitInterface } from "../../interfaces/habits.interface";
+import { getUserHabits } from "../../utils/firebase/habits";
 
 interface SingleGroupPageProps
   extends RouteComponentProps<{
@@ -11,11 +13,16 @@ interface SingleGroupPageProps
 
 const SingleFriend: React.FC<SingleGroupPageProps> = ({ match }) => {
   const [userData, setUserData] = useState({ photoURL: "", displayName: "" });
+  const [habitData, setHabitData] = useState<Array<HabitInterface>>([]);
 
   useEffect(() => {
     getUserDetails(match.params.id).then((res: any) => {
       setUserData(res);
       console.log(res);
+    });
+
+    getUserHabits(match.params.id).then((res: any) => {
+      setHabitData(res);
     });
   }, [match.params.id]);
 
@@ -51,20 +58,23 @@ const SingleFriend: React.FC<SingleGroupPageProps> = ({ match }) => {
             </div>
           </div>
           <div className="openfriends_cardsub">
-            You and {userData.displayName} have{" "}
-            <div className="openfriends_cardsubcolor">5 habits</div> in common
+            Follows{" "}
+            <div className="openfriends_cardsubcolor">
+              {habitData.length} habits
+            </div>{" "}
           </div>
           <div className="openfriends_cardline"></div>
         </div>
-        {[1, 2, 3, 4, 5].map((data, index) => {
+        {habitData.map((data: HabitInterface, index) => {
           return (
             <div className="openfriends_habit" key={index}>
-              <div className="openfriends_habitline"></div>
+              <div
+                className="openfriends_habitline"
+                style={{ background: data.color }}
+              ></div>
               <div className="openfriends_habitsub">
-                <div>
-                  <img src="assets/icon/22.svg" alt="icon" />
-                </div>
-                <p className="openfriends_habittex bold">Reading</p>
+                <div>{/* <img src="assets/icon/22.svg" alt="icon" /> */}</div>
+                <p className="openfriends_habittex bold">{data.name}</p>
               </div>
               <div className="openfriends_habitimages">
                 <img src="assets/icon/23.svg" alt="icon" />
