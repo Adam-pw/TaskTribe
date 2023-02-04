@@ -54,7 +54,7 @@ const Singup: React.FC = () => {
                 { s: "100", r: "x", d: "retro" },
                 true
               ),
-              displayName: res.user.displayName ?? "",
+              displayName: name,
             });
           }
         })
