@@ -6,14 +6,14 @@ import {
   IonLabel,
   IonPage,
 } from "@ionic/react";
-import { signInAnonymously, updateProfile } from "firebase/auth";
+import { updateProfile } from "firebase/auth";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../utils/firebase";
-import { EmailAuthProvider, linkWithCredential } from "firebase/auth";
 import "./Signup.scss";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { setUserDetails } from "../../utils/firebase/user";
+import gravatar from "gravatar";
 
 const Singup: React.FC = () => {
   const [name, setName] = useState<string | undefined>("");
@@ -30,6 +30,11 @@ const Singup: React.FC = () => {
           if (res?.user) {
             updateProfile(res?.user, {
               displayName: name,
+              photoURL: gravatar.url(
+                res.user.email ?? "",
+                { s: "100", r: "x", d: "retro" },
+                true
+              ),
             });
 
             setUserDetails(res?.user, {

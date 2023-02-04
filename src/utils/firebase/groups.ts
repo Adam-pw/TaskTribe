@@ -13,16 +13,17 @@ import { setUserDetails } from "./user";
 
 const groupsCollectionRef = collection(db, "groups");
 
-export const getUserGroups = async (userGroups: Array<string>) => {
-  const q = query(
-    groupsCollectionRef,
-    where("uid", "array-contains-any", userGroups)
-  );
+export const getUserGroups = async (user: User) => {
+  const q = query(groupsCollectionRef, where("owner", "==", user.uid));
+
+  const dataArr: Array<any> = [];
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    console.log(doc.id, " => ", doc.data());
+    dataArr.push(doc.data());
   });
+
+  return dataArr;
 };
 
 export const createGroup = async (user: User, data: GroupInterface) => {

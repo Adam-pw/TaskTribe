@@ -27,7 +27,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if ((!user && !loading) || error) {
-      history.push("/");
+      // history.push("/");
     }
   });
 

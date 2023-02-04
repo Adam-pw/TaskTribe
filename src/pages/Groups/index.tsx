@@ -1,16 +1,22 @@
 import { IonPage, IonHeader, IonLabel, IonContent } from "@ionic/react";
 import { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../../utils/firebase";
+import { getUserGroups } from "../../utils/firebase/groups";
 import "./Groups.scss";
 
 const Groups: React.FC = () => {
-  const [user, setUser] = useState({
-    _id: "",
-    name: "",
-    email: "",
-    avatar: "",
-  });
   const [groups, setGroups] = useState([]);
+  const [user, loading, error] = useAuthState(auth);
+
+  useEffect(() => {
+    if (user)
+      getUserGroups(user).then((res: any) => {
+        setGroups(res);
+        console.log(res);
+      });
+  }, [user]);
 
   return (
     <IonPage>

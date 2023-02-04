@@ -1,20 +1,34 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from "react";
 
-import { IonPage, IonHeader, IonContent, IonCard, IonAvatar, IonLabel } from '@ionic/react'
-import { Link } from 'react-router-dom'
-import './Friends.scss'
-import { FriendModal } from './FriendModel'
+import {
+  IonPage,
+  IonHeader,
+  IonContent,
+  IonCard,
+  IonAvatar,
+  IonLabel,
+} from "@ionic/react";
+import { Link } from "react-router-dom";
+import "./Friends.scss";
+import { FriendModal } from "./FriendModel";
+import { getAllUsers } from "../../utils/firebase/user";
 
 export default function Friends() {
-  const friendModal = useRef<HTMLIonModalElement>(null)
+  const friendModal = useRef<HTMLIonModalElement>(null);
 
-  function dismiss(type: 'habit' | 'group') {
-    if (type === 'habit') friendModal.current?.dismiss()
-    else friendModal.current?.dismiss()
+  function dismiss(type: "habit" | "group") {
+    if (type === "habit") friendModal.current?.dismiss();
+    else friendModal.current?.dismiss();
   }
 
-  const [users, setUsers] = useState([])
-  const [user, setUser] = useState<any>()
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    getAllUsers().then((res: any) => {
+      setUsers(res);
+      console.log(res);
+    });
+  }, []);
 
   return (
     <>
@@ -31,7 +45,9 @@ export default function Friends() {
               <img id="open-friend" alt="sort" src="/assets/icon/41.svg" />
             </div>
           </div>
-          <div className="friends_headermainsub">You have {users.length} friends</div>
+          <div className="friends_headermainsub">
+            You have {users.length} friends
+          </div>
           <div className="friends_headermainline"></div>
         </IonHeader>
 
@@ -50,17 +66,25 @@ export default function Friends() {
                     <div className="friends_mainsub2">
                       <IonLabel className="friends_text2">🔥17</IonLabel>
                       <IonLabel className="friends_arrow">
-                        <img className="friends_arrowimg" alt="arrow" src="/assets/icon/14.svg" />
+                        <img
+                          className="friends_arrowimg"
+                          alt="arrow"
+                          src="/assets/icon/14.svg"
+                        />
                       </IonLabel>
                     </div>
                   </div>
                 </IonCard>
               </Link>
-            )
+            );
           })}
         </IonContent>
       </IonPage>
-      <FriendModal modalRef={friendModal} modalTrigger={'open-friend'} dismiss={dismiss} />
+      <FriendModal
+        modalRef={friendModal}
+        modalTrigger={"open-friend"}
+        dismiss={dismiss}
+      />
     </>
-  )
+  );
 }

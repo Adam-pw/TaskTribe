@@ -25,8 +25,6 @@ export const getUserHabits = async (user: User) => {
     dataArr.push(doc.data());
   });
 
-  console.log(dataArr);
-
   return dataArr;
 };
 

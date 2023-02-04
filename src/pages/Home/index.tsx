@@ -7,8 +7,6 @@ import { Link } from "react-router-dom";
 import { PatchHabitModal } from "./PatchHabitModal";
 import { useHistory } from "react-router";
 import { HabitInterface } from "../../interfaces/habits.interface";
-import { UserDataInterface } from "../../interfaces/users.interface";
-import { getUserDetails } from "../../utils/firebase/user";
 import { getUserHabits } from "../../utils/firebase/habits";
 import { auth } from "../../utils/firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -19,22 +17,15 @@ function Home() {
 
   const history = useHistory();
 
-  const [userDetails, setUserDetails] = useState<UserDataInterface | null>(
-    null
-  );
   const [habits, setHabits] = useState<Array<HabitInterface>>([]);
   const [user, loading, error] = useAuthState(auth);
 
   useEffect(() => {
     if ((!user && !loading) || error) {
-      history.replace("/login");
+      // history.push("/login");
     }
 
     if (user) {
-      getUserDetails(user).then((res: any) => {
-        setUserDetails(res);
-      });
-
       getUserHabits(user).then((res) => {
         setHabits(res);
       });
