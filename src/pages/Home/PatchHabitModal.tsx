@@ -65,7 +65,9 @@ function DefaultHabit({
             ></IonInput>
           </div>
           <div className="create-habit">
-            <button className="new-button">Save</button>
+            <button className="new-button"
+            
+            >Save</button>
           </div>
         </IonContent>
       </div>

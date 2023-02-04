@@ -74,7 +74,7 @@ const Groups: React.FC = () => {
             </Link>
           );
         })}
-        <div className="tasks_text">Addup in Groups to see more</div>
+        <center><div style={groups.length>-1?{display:"inherit"}:{display:"none"}} className="tasks_text">Addup in Groups to see more</div></center>
       </IonContent>
     </IonPage>
   );

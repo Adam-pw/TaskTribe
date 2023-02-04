@@ -45,7 +45,7 @@ function Home() {
     if (type === "habit") patchhabitModalRef.current?.dismiss();
   }
   const [patch, setPatch] = useState(false);
-
+  console.log(habits.length)
   return (
     <IonPage>
       <IonHeader className="home-header">
@@ -122,7 +122,8 @@ function Home() {
                     );
                   })}
                 </div>
-                <div className="tasks_text">Complete more Habits</div>
+                {habits.length===0}
+                <div style={habits.length===0?{display:"block"}:{display:"none"}} className="tasks_text">Complete more Habits</div>
               </div>
               <div className="tasks">
                 <span className="bold">Pending</span>
@@ -159,7 +160,7 @@ function Home() {
                     );
                   })}
                 </div>
-                <div className="tasks_text">Add more Habits</div>
+                <div style={habits.length===0?{display:"block"}:{display:"none"}} className="tasks_text">Add more Habits</div>
               </div>
             </div>
           </div>
