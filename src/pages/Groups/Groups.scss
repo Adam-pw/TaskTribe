@@ -18,7 +18,7 @@
   .Groups_headermainsub {
     font-size: 3.5vw;
     margin: 1vh 3vw 0vh 6vw;
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 400;
     font-size: 10px;
@@ -46,7 +46,7 @@
     align-items: center;
     margin: 2.5vh 16px 2vh 16px;
 
-    .groups_icon{
+    .groups_icon {
       width: 4.5rem;
       height: 4rem;
       border-radius: 10px;
@@ -60,7 +60,7 @@
       }
 
       .groups_head1 {
-        font-family: 'Inter';
+        font-family: "Inter";
         font-style: normal;
         font-weight: 400;
         font-size: 10px;
@@ -94,4 +94,12 @@
       }
     }
   }
+}
+
+.tasks_text {
+  color: #a5a5a5;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  padding: 40px 0px;
 }

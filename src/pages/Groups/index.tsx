@@ -74,6 +74,7 @@ const Groups: React.FC = () => {
             </Link>
           );
         })}
+        <div className="tasks_text">Addup in Groups to see more</div>
       </IonContent>
     </IonPage>
   );

@@ -78,6 +78,8 @@ export default function Friends() {
               </Link>
             );
           })}
+        <div className="tasks_text">Addup more Friends to see more</div>
+
         </IonContent>
       </IonPage>
       <FriendModal
