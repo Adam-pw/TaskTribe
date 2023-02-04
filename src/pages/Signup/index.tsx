@@ -13,6 +13,7 @@ import { auth } from "../../utils/firebase";
 import { EmailAuthProvider, linkWithCredential } from "firebase/auth";
 import "./Signup.scss";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { setUserDetails } from "../../utils/firebase/user";
 
 const Singup: React.FC = () => {
   const [name, setName] = useState<string | undefined>("");
@@ -24,13 +25,23 @@ const Singup: React.FC = () => {
 
   const signUp = async () => {
     if (email && password)
-      createUserWithEmailAndPassword(email, password).then((res) => {
-        if (res?.user) {
-          updateProfile(res?.user, {
-            displayName: name,
-          });
-        }
-      });
+      createUserWithEmailAndPassword(email, password)
+        .then((res) => {
+          if (res?.user) {
+            updateProfile(res?.user, {
+              displayName: name,
+            });
+
+            setUserDetails(res?.user, {
+              habits: [],
+              groups: [],
+              friends: [],
+            });
+          }
+        })
+        .then(() => {
+          history.push("/");
+        });
   };
 
   return (

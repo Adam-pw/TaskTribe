@@ -15,7 +15,7 @@ export const getUserDetails = async (user: User) => {
 };
 
 export const setUserDetails = async (user: User, data: UserDataInterface) => {
-  return await setDoc(doc(db, "habits", user.uid), { ...data });
+  return await setDoc(doc(db, "users", user.uid), { ...data });
 };
 
 export const createUser = async (email: string, password: string) => {

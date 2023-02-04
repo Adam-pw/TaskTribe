@@ -9,26 +9,29 @@ import {
   IonSearchbar,
   IonSelect,
   IonSelectOption,
-  IonToggle
-} from '@ionic/react'
+  IonToggle,
+} from "@ionic/react";
 
-import { close } from 'ionicons/icons'
-import { Ref, SetStateAction, useState } from 'react'
-import './Habit.scss'
+import { close } from "ionicons/icons";
+import { Ref, SetStateAction, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../utils/firebase";
+import { createHabit } from "../../utils/firebase/habits";
+import "./Habit.scss";
 
 interface ModalProps {
-  modalRef: Ref<HTMLIonModalElement>
-  modalTrigger: string
-  dismiss: (type: 'habit' | 'group') => void
+  modalRef: Ref<HTMLIonModalElement>;
+  modalTrigger: string;
+  dismiss: (type: "habit" | "group") => void;
 }
 
 export function NewHabitModal({ modalRef, modalTrigger, dismiss }: ModalProps) {
-  const [custom, setCustom] = useState<Boolean>(false)
+  const [custom, setCustom] = useState<Boolean>(false);
 
   const newDismiss = () => {
-    dismiss('habit')
-    setCustom(false)
-  }
+    dismiss("habit");
+    setCustom(false);
+  };
 
   return (
     <IonModal
@@ -44,44 +47,46 @@ export function NewHabitModal({ modalRef, modalTrigger, dismiss }: ModalProps) {
         <DefaultHabit dismiss={newDismiss} setCustom={setCustom} />
       )}
     </IonModal>
-  )
+  );
 }
 
 function CustomHabit({
   dismiss,
-  setCustom
+  setCustom,
 }: {
-  dismiss: (type: 'habit' | 'group') => void
-  setCustom: React.Dispatch<SetStateAction<Boolean>>
+  dismiss: (type: "habit" | "group") => void;
+  setCustom: React.Dispatch<SetStateAction<Boolean>>;
 }) {
-  const [name, setName] = useState<string>()
-  const [description, setdescription] = useState<string>()
-  const [color, setcolor] = useState<string>()
-  const [type, setType] = useState<boolean>()
-  const [target, settarget] = useState<number>()
-  const [frequency, setFrequency] = useState<number>()
-  const [unit, setUnit] = useState<string>()
+  const [name, setName] = useState<string>();
+  const [description, setdescription] = useState<string>();
+  const [color, setcolor] = useState<string>();
+  const [type, setType] = useState<boolean>();
+  const [target, settarget] = useState<number>();
+  const [frequency, setFrequency] = useState<number>();
+  const [unit, setUnit] = useState<string>();
 
-  const [nomeasure, setnomeasure] = useState(false)
-  const [measure, setmeasure] = useState(false)
+  const [user, loading, error] = useAuthState(auth);
+
+  const [nomeasure, setnomeasure] = useState(false);
+  const [measure, setmeasure] = useState(false);
   const NoMeasurable = () => {
-    setnomeasure(true)
-    setmeasure(false)
-    setType(false)
-  }
+    setnomeasure(true);
+    setmeasure(false);
+    setType(false);
+  };
 
   const Measurable = () => {
-    setmeasure(true)
-    setnomeasure(false)
-    setType(true)
-  }
+    setmeasure(true);
+    setnomeasure(false);
+    setType(true);
+  };
 
   return (
     <>
       <div className="habit-container">
         <div className="header">
           <span className="bold">Create Your Own</span>
-          <button className="close-button" onClick={() => dismiss('habit')}>
+          <button className="close-button" onClick={() => dismiss("habit")}>
             <IonIcon slot="icon-only" size="medium" icon={close}></IonIcon>
           </button>
         </div>
@@ -95,7 +100,7 @@ function CustomHabit({
                 className="div-name-text"
                 placeholder="Enter text"
                 onIonInput={(e) => {
-                  setName(e.target.value?.toString())
+                  setName(e.target.value?.toString());
                 }}
               ></IonInput>
             </div>
@@ -107,7 +112,7 @@ function CustomHabit({
                 className="description-text"
                 placeholder="Description"
                 onIonInput={(e) => {
-                  setdescription(e.target.value?.toString())
+                  setdescription(e.target.value?.toString());
                 }}
               ></IonInput>
             </div>
@@ -115,11 +120,19 @@ function CustomHabit({
               <IonRadioGroup className="radio-button">
                 <div className="radio-button-main">
                   <IonLabel>Measurable</IonLabel>
-                  <IonRadio onClick={Measurable} slot="end" value="grapes"></IonRadio>
+                  <IonRadio
+                    onClick={Measurable}
+                    slot="end"
+                    value="grapes"
+                  ></IonRadio>
                 </div>
                 <div className="radio-button-main">
-                  <IonLabel>{'Yes/No'}</IonLabel>
-                  <IonRadio onClick={NoMeasurable} slot="end" value="strawberries"></IonRadio>
+                  <IonLabel>{"Yes/No"}</IonLabel>
+                  <IonRadio
+                    onClick={NoMeasurable}
+                    slot="end"
+                    value="strawberries"
+                  ></IonRadio>
                 </div>
               </IonRadioGroup>
             </div>
@@ -137,7 +150,7 @@ function CustomHabit({
                       className="units-mile-input"
                       placeholder="Measurable Unit"
                       onIonInput={(e) => {
-                        setUnit(String(e.target.value?.toString()))
+                        setUnit(String(e.target.value?.toString()));
                       }}
                     />
                   </div>
@@ -153,7 +166,7 @@ function CustomHabit({
                       placeholder="Target Numbers"
                       type="number"
                       onIonInput={(e) => {
-                        settarget(Number(e.target.value?.toString()))
+                        settarget(Number(e.target.value?.toString()));
                       }}
                     />
                   </div>
@@ -167,7 +180,7 @@ function CustomHabit({
                     <IonInput
                       placeholder="Select frequency"
                       onIonInput={(e) => {
-                        setFrequency(Number(e.target.value?.toString()))
+                        setFrequency(Number(e.target.value?.toString()));
                       }}
                     ></IonInput>
                   </div>
@@ -181,7 +194,7 @@ function CustomHabit({
                       <IonSelect
                         placeholder="Color"
                         onIonChange={(e) => {
-                          setcolor(e.target.value?.toString())
+                          setcolor(e.target.value?.toString());
                         }}
                       >
                         <IonSelectOption value="red">Red</IonSelectOption>
@@ -217,8 +230,12 @@ function CustomHabit({
                   <span className="frequency-text-sub">Frequency</span>
                   <div className="frequency-text">
                     <IonSelect placeholder="Select frequency">
-                      <IonSelectOption value="apples">Once a day</IonSelectOption>
-                      <IonSelectOption value="oranges">Once a week</IonSelectOption>
+                      <IonSelectOption value="apples">
+                        Once a day
+                      </IonSelectOption>
+                      <IonSelectOption value="oranges">
+                        Once a week
+                      </IonSelectOption>
                     </IonSelect>
                   </div>
                 </div>
@@ -255,52 +272,82 @@ function CustomHabit({
             )}
           </div>
           <div className="create-habit">
-            <button className="new-button">
+            <button
+              className="new-button"
+              onClick={() => {
+                if (user && name && type)
+                  createHabit(user, {
+                    owner: user.uid,
+                    name,
+                    type,
+                    description,
+                    color,
+                    target,
+                    frequency,
+                    unit,
+                  }).then(() => dismiss("habit"));
+              }}
+            >
               Save
             </button>
           </div>
         </IonContent>
       </div>
     </>
-  )
+  );
 }
 
 function DefaultHabit({
   dismiss,
-  setCustom
+  setCustom,
 }: {
-  dismiss: (type: 'habit' | 'group') => void
-  setCustom: React.Dispatch<SetStateAction<Boolean>>
+  dismiss: (type: "habit" | "group") => void;
+  setCustom: React.Dispatch<SetStateAction<Boolean>>;
 }) {
   return (
     <>
       <div className="habit-container">
         <div className="header">
           <span className="bold">New Habit</span>
-          <button className="close-button" onClick={() => dismiss('habit')}>
+          <button className="close-button" onClick={() => dismiss("habit")}>
             <IonIcon slot="icon-only" size="medium" icon={close}></IonIcon>
           </button>
         </div>
         <IonContent>
-          <IonSearchbar showCancelButton='focus'></IonSearchbar>
+          <IonSearchbar showCancelButton="focus"></IonSearchbar>
           <div className="cards">
-            <div className="card" style={{ background: '#A6BFFF', color: '#001A5E' }}>
+            <div
+              className="card"
+              style={{ background: "#A6BFFF", color: "#001A5E" }}
+            >
               <span>Meditate</span>
               <img src="/assets/Habit_Characters/meditate.svg" alt="Meditate" />
             </div>
-            <div className="card" style={{ background: '#FFB0B0', color: '#9D0000' }}>
+            <div
+              className="card"
+              style={{ background: "#FFB0B0", color: "#9D0000" }}
+            >
               <span>Drink Water</span>
               <img src="/assets/Habit_Characters/Drink_Water.svg" alt="Drink" />
             </div>
-            <div className="card" style={{ background: '#AEFFC5', color: '#2A653B' }}>
+            <div
+              className="card"
+              style={{ background: "#AEFFC5", color: "#2A653B" }}
+            >
               <span>Read</span>
               <img src="/assets/Habit_Characters/Read.svg" alt="Read" />
             </div>
-            <div className="card" style={{ background: '#FFB9F0', color: '#9D3586' }}>
+            <div
+              className="card"
+              style={{ background: "#FFB9F0", color: "#9D3586" }}
+            >
               <span>Gym</span>
               <img src="/assets/Habit_Characters/Gym.svg" alt="Gym" />
             </div>
-            <div className="card" style={{ background: '#FFF09F', color: '#AB9830' }}>
+            <div
+              className="card"
+              style={{ background: "#FFF09F", color: "#AB9830" }}
+            >
               <span>Run</span>
               <img src="/assets/Habit_Characters/Run.svg" alt="Run" />
             </div>
@@ -315,5 +362,5 @@ function DefaultHabit({
         </button>
       </div>
     </>
-  )
+  );
 }

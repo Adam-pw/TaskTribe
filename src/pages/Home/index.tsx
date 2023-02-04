@@ -41,7 +41,7 @@ function Home() {
       getUserHabits(userDetails?.habits as string[]).then((res) => {
         setHabits(res);
       });
-  });
+  }, []);
 
   const getDatesInRange = (min: any, max: any) => {
     return Array((max - min) / 86400000)

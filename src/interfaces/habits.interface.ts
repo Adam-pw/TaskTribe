@@ -5,7 +5,7 @@ export interface HabitInterface {
 
   color?: string;
   unit?: string;
-  type: "measurable" | "y/n";
+  type: boolean;
 
   target?: number;
   frequency?: number;
