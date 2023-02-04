@@ -15,8 +15,8 @@ import { updateUserDetails } from "./user";
 
 const habitsCollectionRef = collection(db, "habits");
 
-export const getUserHabits = async (user: User) => {
-  const q = query(habitsCollectionRef, where("owner", "==", user.uid));
+export const getUserHabits = async (user_id: string) => {
+  const q = query(habitsCollectionRef, where("owner", "==", user_id));
 
   const dataArr: Array<any> = [];
 

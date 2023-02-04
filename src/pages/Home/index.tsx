@@ -26,7 +26,7 @@ function Home() {
     }
 
     if (user) {
-      getUserHabits(user).then((res) => {
+      getUserHabits(user.uid).then((res) => {
         setHabits(res);
       });
     }

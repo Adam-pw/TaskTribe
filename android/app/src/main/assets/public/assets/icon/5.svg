@@ -1,0 +1,14 @@
+<svg width="150" height="146" viewBox="0 0 150 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="150" height="145.13" rx="4" fill="black"/>
+<line opacity="0.11" x1="22.4155" y1="2.92206" x2="22.4155" y2="142.695" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="148.052" y1="23.3896" x2="1.94786" y2="23.3896" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="47.2532" y1="2.92206" x2="47.2532" y2="142.695" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="148.052" y1="48.2272" x2="1.94786" y2="48.2272" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="72.0911" y1="2.92206" x2="72.0911" y2="142.695" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="148.052" y1="73.0649" x2="1.94786" y2="73.0649" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="96.9285" y1="2.92206" x2="96.9285" y2="142.695" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="148.052" y1="97.9025" x2="1.94786" y2="97.9025" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="121.766" y1="2.92206" x2="121.766" y2="142.695" stroke="white" stroke-dasharray="8 8"/>
+<line opacity="0.11" x1="148.052" y1="122.74" x2="1.94786" y2="122.74" stroke="white" stroke-dasharray="8 8"/>
+<path d="M3 122C8.92002 120.295 19.7869 109.089 19.7869 90.1421C19.7869 73.2807 28.5453 60.4234 44.6023 76.5008C56.8681 88.782 70.8775 75.0281 70.8775 69.6801C70.8775 62.8061 73.4867 48 82.7987 48C92.5302 48 85.7181 76.5008 103.721 94.5269C117.316 108.139 121.703 105.374 126.347 103.243C132.186 100.564 138.025 68.5902 138.025 60.4234C138.025 49.4083 147.27 53.9275 148 51.8975" stroke="#2A67F5" stroke-width="2" stroke-linecap="round"/>
+</svg>
