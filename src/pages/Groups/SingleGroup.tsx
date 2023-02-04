@@ -13,8 +13,9 @@ import {
   sunny,
   walk,
 } from "ionicons/icons";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, RouteComponentProps } from "react-router-dom";
+import { Addmember } from "./Addmember";
 import "./SingleGroup.scss";
 
 interface SingleGroupPageProps
@@ -24,6 +25,13 @@ interface SingleGroupPageProps
 
 const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
   const [groupData, setGroupData] = useState({ name: "", color: "" });
+
+  const addMember = useRef<HTMLIonModalElement>(null);
+
+  function dismiss(type: "habit" | "group") {
+    if (type === "habit") addMember.current?.dismiss();
+    else addMember.current?.dismiss();
+  }
 
   return (
     <IonPage>
@@ -43,7 +51,7 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
             <div>
               <img alt="sort" src="/assets/icon/15.svg" />
             </div>
-            <div>
+            <div id="add-member">
               <img alt="plus" src="/assets/icon/18.svg" />
             </div>
           </div>
@@ -84,12 +92,14 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
 
         <div className="opengroups_habits_o">
           <div className="opengroups_habits_i">
-            <IonButton className="opengroups_habits_l" fill="clear">
-              <Link to="/grpprogress">
-                <IonIcon icon={pulse}></IonIcon>
-                Group Progress
-              </Link>
-            </IonButton>
+            {/* <Link to="/grpprogress"> */}
+              <div>
+                <button className="opengroups_habits_i_1">
+                  <IonIcon icon={pulse}></IonIcon>
+                  <div>GroupProgress</div>
+                </button>
+              </div>
+            {/* </Link> */}
             {[
               ["Read", "readerOutline"],
               ["Run", "walk"],
@@ -97,10 +107,10 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
               ["Gym"],
             ].map((d, i) => {
               return (
-                <IonButton className="opengroups_habits_l" fill="clear" key={i}>
+                <button className="opengroups_habits_i_1" key={i}>
                   <IonIcon icon={readerOutline}></IonIcon>
-                  {d[0]}
-                </IonButton>
+                  <div>{d[0]}</div>
+                </button>
               );
             })}
           </div>
@@ -153,6 +163,11 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
             </div>
           );
         })}
+        <Addmember
+          modalRef={addMember}
+          modalTrigger="add-member"
+          dismiss={dismiss}
+        />
       </IonContent>
     </IonPage>
   );

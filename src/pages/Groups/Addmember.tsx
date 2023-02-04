@@ -2,34 +2,26 @@ import { IonContent, IonIcon, IonInput, IonModal } from "@ionic/react";
 
 import { close } from "ionicons/icons";
 import React, { Ref, SetStateAction, useState } from "react";
-import "../Groups/Addmember.scss";
+import "./Addmember.scss";
 
 interface ModalProps {
   modalRef: Ref<HTMLIonModalElement>;
-  modalTrigger: boolean;
+  modalTrigger: string;
   dismiss: (type: "habit" | "group") => void;
-  setPatch: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export function PatchHabitModal({
-  modalRef,
-  modalTrigger,
-  setPatch,
-  dismiss,
-}: ModalProps) {
+export function Addmember({ modalRef, modalTrigger, dismiss }: ModalProps) {
   const [custom, setCustom] = useState<Boolean>(false);
-
   const newDismiss = () => {
-    dismiss("habit");
+    dismiss("group");
     setCustom(false);
-    setPatch(false);
   };
 
   return (
     <IonModal
       id="new-patchhabit-modal"
       ref={modalRef}
-      isOpen={modalTrigger}
+      trigger={modalTrigger}
       breakpoints={[0.9]}
       initialBreakpoint={0.9}
     >
@@ -50,7 +42,7 @@ function DefaultHabit({
       <div className="habit-container">
         <IonContent>
           <div className="header">
-            <span className="bold">Add your Progress :</span>
+            <span className="bold">Add friend Here :</span>
             <button className="close-button" onClick={() => dismiss("habit")}>
               <IonIcon slot="icon-only" size="medium" icon={close}></IonIcon>
             </button>

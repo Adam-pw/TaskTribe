@@ -1,23 +1,23 @@
 .opengroups_headercardmain {
-  background-color: black !important; 
+  background-color: black !important;
   opacity: 90% !important;
 
-.opengroups_headercard {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  color: white;
-  padding-top: 9px;
-  padding-bottom: 61px;
+  .opengroups_headercard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    padding-top: 9px;
+    padding-bottom: 61px;
 
-  .opengroups_headercardback {
-    width: 10%;
+    .opengroups_headercardback {
+      width: 10%;
+    }
+    .opengroups_headercardback1 {
+      width: 40%;
+    }
   }
-  .opengroups_headercardback1 {
-    width: 40%;
-  }
-}
 }
 .opengroups_profile {
   position: absolute;
@@ -55,7 +55,7 @@
   .opengroups_cardsub {
     margin: 14px auto 0px auto;
     width: 75%;
-    font-family: 'Inter';
+    font-family: "Inter";
     font-style: normal;
     font-weight: 700;
     font-size: 10px;
@@ -99,6 +99,22 @@
     align-items: center;
     gap: 5px;
     overflow-x: scroll;
+    
+    &_1 {
+      background-color: var(--neutral-500);
+      color: white;
+      border-radius: 4px;
+      // font-family: "Inter";
+      // font-style: normal;
+      // font-weight: 700;
+      // font-size: 10px;
+      // line-height: 120%;
+      // text-decoration: none;
+      display: flex;
+      flex-direction: row;
+      gap: 8px;
+      padding: 10px 19px;
+    }
   }
   &_l {
     background: #292a2c;
@@ -122,7 +138,7 @@
   }
   &_l {
     &_text {
-      font-family: 'Inter';
+      font-family: "Inter";
       font-style: normal;
       font-weight: 700;
       font-size: 12px;

@@ -13,8 +13,28 @@ function Home() {
 
   const history = useHistory();
 
-  const [user, setUser] = useState({ name: "", email: "", avatar: "" });
-  const [habits, setHabit] = useState([]);
+  const [user, setUser] = useState<User | null>(null);
+  const [userDetails, setUserDetails] = useState<UserDataInterface | null>(
+    null
+  );
+  const [habits, setHabits] = useState<Array<HabitInterface>>([]);
+
+  useEffect(() => {
+    setUser(auth.currentUser);
+    if (!user) {
+      history.push("/splashscreens");
+    }
+
+    if (user)
+      getUserDetails(user?.uid).then((res) => {
+        setUserDetails(res);
+      });
+
+    if (userDetails?.habits)
+      getUserHabits(userDetails?.habits).then((res) => {
+        setHabits(res);
+      });
+  }, []);
 
   const getDatesInRange = (min: any, max: any) => {
     return Array((max - min) / 86400000)
@@ -28,12 +48,6 @@ function Home() {
     if (type === "habit") patchhabitModalRef.current?.dismiss();
   }
   const [patch, setPatch] = useState(false);
-
-  useEffect(() => {
-    if (!user) {
-      history.replace("/login");
-    }
-  });
 
   return (
     <IonPage>
