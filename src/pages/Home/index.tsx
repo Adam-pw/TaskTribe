@@ -39,7 +39,7 @@ function Home() {
         setHabits(res);
       });
     }
-  }, []);
+  }, [user, error, history, loading]);
 
   const getDatesInRange = (min: any, max: any) => {
     return Array((max - min) / 86400000)
