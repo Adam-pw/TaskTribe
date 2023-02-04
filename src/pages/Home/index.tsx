@@ -22,7 +22,8 @@ function Home() {
 
   useEffect(() => {
     if ((!user && !loading) || error) {
-      // history.push("/login");
+      history.push("/splashscreens");
+      window.location.reload();
     }
 
     if (user) {
