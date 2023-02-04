@@ -9,6 +9,9 @@ import {
 
 import { close } from "ionicons/icons";
 import { Ref, SetStateAction, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../utils/firebase";
+import { createGroup } from "../../utils/firebase/groups";
 import "./NewGroupModal.scss";
 
 interface ModalProps {
@@ -75,6 +78,8 @@ function DefaultHabit({
   const [description, setDescription] = useState<string | undefined>("");
   const [color, setColor] = useState<string>("");
   const [members, setMembers] = useState<Array<string>>([]);
+
+  const [user, loading, error] = useAuthState(auth);
   return (
     <>
       <div className="habit-container">
@@ -164,7 +169,18 @@ function DefaultHabit({
           </div>
         </IonContent>
       </div>
-      <div className="create-habit">
+      <div
+        className="create-habit"
+        onClick={() => {
+          if (user && name)
+            createGroup(user, {
+              owner: user.uid,
+              members: [user.uid],
+              name,
+              description,
+            }).then(() => dismiss("group"));
+        }}
+      >
         <button className="new-button">Save</button>
       </div>
     </>
