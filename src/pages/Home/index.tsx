@@ -130,6 +130,7 @@ function Home() {
                     );
                   })}
                 </div>
+                <div className="tasks_text">Complete more Habits</div>
               </div>
               <div className="tasks">
                 <span className="bold">Pending</span>
@@ -166,6 +167,7 @@ function Home() {
                     );
                   })}
                 </div>
+                <div className="tasks_text">Add more Habits</div>
               </div>
             </div>
           </div>
