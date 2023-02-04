@@ -11,7 +11,7 @@ import {
 } from "firebase/firestore";
 import { HabitInterface } from "../../interfaces/habits.interface";
 import { User } from "@firebase/auth";
-import { setUserDetails } from "./user";
+import { updateUserDetails } from "./user";
 
 const habitsCollectionRef = collection(db, "habits");
 
@@ -36,6 +36,6 @@ export const updateHabit = async (data: HabitInterface) => {
 
 export const createHabit = async (user: User, data: HabitInterface) => {
   return await addDoc(habitsCollectionRef, { ...data }).then((res) => {
-    setUserDetails(user, { habits: arrayUnion(res.id) });
+    updateUserDetails(user, { habits: arrayUnion(res.id) });
   });
 };

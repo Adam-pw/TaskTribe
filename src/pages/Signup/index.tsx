@@ -58,6 +58,9 @@ const Singup: React.FC = () => {
             });
           }
         })
+        .catch((err) => {
+          console.log(err);
+        })
         .then(() => {
           history.push("/");
         });

@@ -9,7 +9,7 @@ import {
 } from "firebase/firestore";
 import { GroupInterface } from "../../interfaces/groups.interface";
 import { User } from "firebase/auth";
-import { setUserDetails } from "./user";
+import { updateUserDetails } from "./user";
 
 const groupsCollectionRef = collection(db, "groups");
 
@@ -28,6 +28,6 @@ export const getUserGroups = async (user: User) => {
 
 export const createGroup = async (user: User, data: GroupInterface) => {
   return await addDoc(groupsCollectionRef, { ...data }).then((res) => {
-    setUserDetails(user, { groups: arrayUnion(res.id) });
+    updateUserDetails(user, { groups: arrayUnion(res.id) });
   });
 };

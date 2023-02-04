@@ -4,6 +4,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  setDoc,
   updateDoc,
 } from "firebase/firestore";
 import { UserDataInterface } from "../../interfaces/users.interface";
@@ -27,6 +28,13 @@ export const getAllUsers = async () => {
 };
 
 export const setUserDetails = async (user: User, data: UserDataInterface) => {
+  return await setDoc(doc(db, "users", user.uid), { ...data });
+};
+
+export const updateUserDetails = async (
+  user: User,
+  data: UserDataInterface
+) => {
   return await updateDoc(doc(db, "users", user.uid), { ...data });
 };
 
