@@ -1,10 +1,4 @@
-import {
-  IonPage,
-  IonContent,
-  IonBackButton,
-  IonIcon,
-  IonButton,
-} from "@ionic/react";
+import { IonPage, IonContent, IonBackButton, IonIcon } from "@ionic/react";
 import {
   leafOutline,
   person,
@@ -14,7 +8,8 @@ import {
   walk,
 } from "ionicons/icons";
 import { useEffect, useRef, useState } from "react";
-import { Link, RouteComponentProps } from "react-router-dom";
+import { RouteComponentProps } from "react-router-dom";
+import { getGroupDetails } from "../../utils/firebase/groups";
 import { Addmember } from "./Addmember";
 import "./SingleGroup.scss";
 
@@ -32,6 +27,12 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
     if (type === "habit") addMember.current?.dismiss();
     else addMember.current?.dismiss();
   }
+
+  useEffect(() => {
+    getGroupDetails(match.params.id).then((res: any) => {
+      if (res) setGroupData(res);
+    });
+  }, [match.params.id]);
 
   return (
     <IonPage>
@@ -93,12 +94,12 @@ const SingleGroup: React.FC<SingleGroupPageProps> = ({ match }) => {
         <div className="opengroups_habits_o">
           <div className="opengroups_habits_i">
             {/* <Link to="/grpprogress"> */}
-              <div>
-                <button className="opengroups_habits_i_1">
-                  <IonIcon icon={pulse}></IonIcon>
-                  <div>GroupProgress</div>
-                </button>
-              </div>
+            <div>
+              <button className="opengroups_habits_i_1">
+                <IonIcon icon={pulse}></IonIcon>
+                <div>GroupProgress</div>
+              </button>
+            </div>
             {/* </Link> */}
             {[
               ["Read", "readerOutline"],

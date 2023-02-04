@@ -6,6 +6,8 @@ import {
   query,
   where,
   getDocs,
+  getDoc,
+  doc,
 } from "firebase/firestore";
 import { GroupInterface } from "../../interfaces/groups.interface";
 import { User } from "firebase/auth";
@@ -30,4 +32,8 @@ export const createGroup = async (user: User, data: GroupInterface) => {
   return await addDoc(groupsCollectionRef, { ...data }).then((res) => {
     updateUserDetails(user, { groups: arrayUnion(res.id) });
   });
+};
+
+export const getGroupDetails = async (group_id: string) => {
+  return (await getDoc(doc(db, "groups", group_id))).data();
 };
