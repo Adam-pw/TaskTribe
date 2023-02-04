@@ -48,6 +48,9 @@ const Singup: React.FC = () => {
               habits: [],
               groups: [],
               friends: [],
+
+              uid: res.user.uid,
+              photoURL: res.user.photoURL ?? "",
             });
           }
         })

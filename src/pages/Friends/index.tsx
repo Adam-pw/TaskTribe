@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import "./Friends.scss";
 import { FriendModal } from "./FriendModel";
 import { getAllUsers } from "../../utils/firebase/user";
+import { User } from "firebase/auth";
 
 export default function Friends() {
   const friendModal = useRef<HTMLIonModalElement>(null);
@@ -21,7 +22,7 @@ export default function Friends() {
     else friendModal.current?.dismiss();
   }
 
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState<Array<User>>([]);
 
   useEffect(() => {
     getAllUsers().then((res: any) => {
@@ -52,16 +53,16 @@ export default function Friends() {
         </IonHeader>
 
         <IonContent>
-          {users.map((data: any, index) => {
+          {users.map((data: User, index) => {
             return (
-              <Link to={`/friends/f/${data._id}`} key={index}>
+              <Link to={`/friends/f/${data.uid}`} key={index}>
                 <IonCard className="friends_card">
                   <div className="friends_main">
                     <div className="friends_mainsub">
                       <IonAvatar className="friends_image">
-                        <img alt="friend logo" src={data.avatar} />
+                        <img alt="friend logo" src={data.photoURL ?? ""} />
                       </IonAvatar>
-                      <div className="friends_text">{data.name}</div>
+                      <div className="friends_text">{data.displayName}</div>
                     </div>
                     <div className="friends_mainsub2">
                       <IonLabel className="friends_text2">🔥17</IonLabel>

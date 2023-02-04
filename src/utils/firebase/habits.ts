@@ -22,7 +22,7 @@ export const getUserHabits = async (user: User) => {
 
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    dataArr.push(doc.data());
+    dataArr.push({ ...doc.data(), id: doc.id });
   });
 
   return dataArr;

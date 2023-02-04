@@ -184,6 +184,7 @@ function DefaultHabit({
               owner: user.uid,
               members: [user.uid],
               name,
+              color,
               description,
             }).then(() => dismiss("group"))
             .finally(()=>{
