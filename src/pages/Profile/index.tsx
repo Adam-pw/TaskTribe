@@ -1,11 +1,11 @@
-import { User } from "@firebase/auth";
 import { IonPage, IonContent, IonLabel, IonToggle } from "@ionic/react";
-import { useEffect, useState } from "react";
+import { useAuthState, useSignOut } from "react-firebase-hooks/auth";
 import { auth } from "../../utils/firebase";
 import "./Profile.scss";
 
 const Profile: React.FC = () => {
-  const [user, setUser] = useState<User | null>();
+  const [user, loading, error] = useAuthState(auth);
+  const [signOut, _loading, _error] = useSignOut(auth);
 
   return (
     <IonPage>
@@ -69,7 +69,7 @@ const Profile: React.FC = () => {
           </div>
           <button
             onClick={() => {
-              auth.signOut().then(() => {
+              signOut().then(() => {
                 window.location.reload();
               });
             }}

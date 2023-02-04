@@ -12,24 +12,25 @@ import { Link, useHistory } from "react-router-dom";
 import { auth } from "../../utils/firebase";
 import { EmailAuthProvider, linkWithCredential } from "firebase/auth";
 import "./Signup.scss";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Singup: React.FC = () => {
   const [name, setName] = useState<string | undefined>("");
   const [email, setEmail] = useState<string | undefined>("");
   const [password, setPassword] = useState<string | undefined>("");
   const history = useHistory();
+  const [createUserWithEmailAndPassword, user, loading, error] =
+    useCreateUserWithEmailAndPassword(auth);
 
   const signUp = async () => {
-    signInAnonymously(auth).then((res) => {
-      updateProfile(res.user, {
-        displayName: name,
+    if (email && password)
+      createUserWithEmailAndPassword(email, password).then((res) => {
+        if (res?.user) {
+          updateProfile(res?.user, {
+            displayName: name,
+          });
+        }
       });
-
-      if (email && password) {
-        const credential = EmailAuthProvider.credential(email, password);
-        linkWithCredential(res.user, credential);
-      }
-    });
   };
 
   return (

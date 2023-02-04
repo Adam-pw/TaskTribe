@@ -27,7 +27,7 @@ function Home() {
 
   useEffect(() => {
     if ((!user && !loading) || error) {
-      history.push("/login");
+      history.replace("/login");
     }
 
     console.log(user);

@@ -11,14 +11,19 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import "./Login.scss";
 import { auth } from "../../utils/firebase";
-import { User } from "@firebase/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
+import {
+  useAuthState,
+  useSignInWithEmailAndPassword,
+} from "react-firebase-hooks/auth";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string | undefined>("");
   const [password, setPassword] = useState<string | undefined>("");
+
   const history = useHistory();
   const [user, loading, error] = useAuthState(auth);
+  const [signInWithEmailAndPassword, _u, _l, _e] =
+    useSignInWithEmailAndPassword(auth);
 
   useEffect(() => {
     if ((!user && !loading) || error) {
@@ -60,7 +65,17 @@ const Login: React.FC = () => {
           </IonItem>
         </div>
 
-        <IonButton expand="block" className="login_btn">
+        <IonButton
+          expand="block"
+          className="login_btn"
+          onClick={() => {
+            if (email && password)
+              signInWithEmailAndPassword(email, password).then((res) => {
+                if (res?.user) history.push("/");
+                console.log(res);
+              });
+          }}
+        >
           <span className="bold">Login</span>
         </IonButton>
 
