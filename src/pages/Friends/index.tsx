@@ -85,7 +85,7 @@ export default function Friends() {
                 );
               else return null;
             })}
-          <div style={users.length>-1?{display:"inherit"}:{display:"none"}} className="tasks_text">Addup more Friends to see more</div>
+          <div style={users.length===-1?{display:"inherit"}:{display:"none"}} className="tasks_text">Addup more Friends to see more</div>
         </IonContent>
       </IonPage>
       <FriendModal
